@@ -5,7 +5,7 @@
 #environment
 .development.env
 .production.env
-
+.env
 # Logs
 logs
 *.log
