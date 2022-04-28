@@ -1,0 +1,8 @@
+{
+    "development": {
+        "name": "WebChat - Development Mode",
+        "host": "localhost",
+        "port": 8000,
+        "mode": "development"
+    }
+}
