@@ -1,8 +1,0 @@
-{
-    "production": {
-        "name": "WebChat - Production Mode",
-        "host": "localhost",
-        "port": 8000,
-        "mode": "production"
-    }
-}

@@ -28,7 +28,6 @@
     "@nestjs/mongoose": "^9.0.3",
     "@nestjs/platform-express": "^8.0.0",
     "@nestjs/typeorm": "^8.0.3",
-    "@types/config": "^0.0.41",
     "mongoose": "^6.3.1",
     "mysql2": "^2.3.3",
     "reflect-metadata": "^0.1.13",
