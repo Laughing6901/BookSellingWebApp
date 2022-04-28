@@ -4,14 +4,12 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UserController } from './user/user.controller';
+import { SigninModule } from './signin/signin.module';
+import { SignupModule } from './signup/signup.module';
 import { UserModule } from './user/user.module';
-import { ChatController } from './chat/chat.controller';
 import { ChatModule } from './chat/chat.module';
 
 @Module({
-  
-  
   imports: [
     //setup connect to mysql database
     // forRootAsync make connect to db asynchronously
@@ -51,10 +49,15 @@ import { ChatModule } from './chat/chat.module';
     }),
 
     //import module 
-    UserModule, 
+    SigninModule,
+
+    SignupModule,
+
+    UserModule,
+
     ChatModule,
   ],
-  controllers: [AppController, UserController, ChatController],
+  controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}
