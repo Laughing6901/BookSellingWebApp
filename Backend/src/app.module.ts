@@ -4,6 +4,10 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { SigninModule } from './signin/signin.module';
+import { SignupModule } from './signup/signup.module';
+import { UserModule } from './user/user.module';
+import { ChatModule } from './chat/chat.module';
 
 @Module({
   imports: [
@@ -42,7 +46,16 @@ import { AppService } from './app.service';
     // setup for using global for config module
     ConfigModule.forRoot({
       isGlobal: true
-    })
+    }),
+
+    //import module 
+    SigninModule,
+
+    SignupModule,
+
+    UserModule,
+
+    ChatModule,
   ],
   controllers: [AppController],
   providers: [AppService],
