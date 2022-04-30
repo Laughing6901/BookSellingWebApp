@@ -7,10 +7,8 @@ import { AppService } from './app.service';
 import { SigninModule } from './signin/signin.module';
 import { AuthModule } from './auth/auth.module';
 import { SignupModule } from './signup/signup.module';
-import { SignupModule } from './signup/signup.module';
 import { UserModule } from './user/user.module';
 import { ChatModule } from './chat/chat.module';
-import { SigninModule } from './signin/signin.module';
 
 @Module({
   imports: [
@@ -22,8 +20,8 @@ import { SigninModule } from './signin/signin.module';
       //it able to inject dependencies
       useFactory:(configService: ConfigService) => ({
         type: 'mysql',
-        host: configService.get('HOST') || 'localhost:',
-        port: +configService.get<number>('PORT') || 3306,
+        host: configService.get('DB_HOST') || 'localhost',
+        port: +configService.get<number>('DB_PORT') || 3306,
         username: configService.get('USERNAME') || 'root',
         password: configService.get('PASSWORD') || 'root',
         database: configService.get('DATABASE') || 'root',
