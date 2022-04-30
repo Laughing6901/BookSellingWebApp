@@ -5,8 +5,9 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const configService = app.get(ConfigService);
-  const port = configService.get("PRODUCT_PORT") || 5500;
-  console.log(port);
+  const nodeEnv = configService.get('NODE_ENV');
+  const port = configService.get(`${nodeEnv}_PORT`) || 5500;
   await app.listen(port);
+  console.log(`App listening on port: ${port}`);
 }
 bootstrap();
