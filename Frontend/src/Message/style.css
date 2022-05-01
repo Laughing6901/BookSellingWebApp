@@ -1,0 +1,11 @@
+.chatRoomContent .ant-layout{
+    background: rgba(216, 203, 216, 0.247);
+}
+.messageBox .ant-avatar-circle{
+    margin-top: 8px;
+    margin-right: 12px;
+    margin-left: 45px;
+}
+.chatRoomContent .messageBox .ant-col-8{
+    margin-top: 3px;
+}
