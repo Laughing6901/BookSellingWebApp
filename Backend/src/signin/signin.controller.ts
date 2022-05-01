@@ -1,34 +1,17 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
 import { SigninService } from './signin.service';
-import { CreateSigninDto } from './dto/create-signin.dto';
+import { SigninDto } from './dto/create-signin.dto';
 import { UpdateSigninDto } from './dto/update-signin.dto';
+import { LocalGuard } from 'src/auth/guard/local.guard';
 
 @Controller('signin')
 export class SigninController {
   constructor(private readonly signinService: SigninService) {}
 
+  @UseGuards(LocalGuard)
   @Post()
-  create(@Body() createSigninDto: CreateSigninDto) {
-    return this.signinService.create(createSigninDto);
+  signin(@Body() signinData: SigninDto) {
+    return this.signinService.signin(signinData);
   }
 
-  @Get()
-  findAll() {
-    return this.signinService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.signinService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateSigninDto: UpdateSigninDto) {
-    return this.signinService.update(+id, updateSigninDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.signinService.remove(+id);
-  }
 }

@@ -1,1 +1,4 @@
-export class CreateSigninDto {}
+export class SigninDto {
+    username: string;
+    password: string;
+}
