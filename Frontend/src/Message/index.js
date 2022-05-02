@@ -1,5 +1,5 @@
 import { PhoneFilled, UserOutlined, VideoCameraFilled } from '@ant-design/icons'
-import { Avatar, Col, Row } from 'antd'
+import { Avatar, Col, Input, Row } from 'antd'
 import React from 'react'
 import './style.css'
 
@@ -22,6 +22,7 @@ export default function Message() {
             console.log("u got an error:" + err)
         });
     }
+
     return (
         <div className='messageBox'>
             <div className='boxHeader'>
@@ -54,6 +55,16 @@ export default function Message() {
                         </Row>
                     </Col>
                 </Row>
+            </div>
+            <div className='messageList'></div>
+            <div className='sendMessage'>
+                <form>
+                    <div className='inputGroup'>
+                        <div className='inputText'>
+                            <Input placeholder="Message" allowClear />
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     )

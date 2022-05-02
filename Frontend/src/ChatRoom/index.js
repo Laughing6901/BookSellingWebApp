@@ -44,7 +44,7 @@ export default function ChatRoom() {
           }}
           theme={theme}
         >
-          <div style={{ marginLeft: 10, marginTop: 18, marginBottom: 18, width: 280 }}>
+          <div style={{ marginLeft: 10, marginTop: 18, marginBottom: 18, width: 280 }} className="siderHeader">
             <Row>
               <Col span={5}>
                 <Dropdown overlay={menu} trigger={['click']}>
@@ -95,7 +95,7 @@ export default function ChatRoom() {
             </Menu.Item>
           </Menu>
         </Sider>
-        <Layout className="site-layout" style={{ marginLeft: '18%' }}>
+        <Layout className="site-layout" style={{ marginLeft: '19.6%' }}>
           <Content>
             <Route
               exact={false}

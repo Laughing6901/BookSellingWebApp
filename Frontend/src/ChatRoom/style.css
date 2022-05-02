@@ -35,7 +35,7 @@
 ::-webkit-scrollbar-thumb:hover {
     background: #2f2d2d6d;
 }
-.chatRoomContent .ant-input-affix-wrapper{
+.chatRoomContent .siderHeader .ant-input-affix-wrapper{
     margin-top: 10px;
 }
 .chatRoomContent .ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):hover {
@@ -43,7 +43,7 @@
 }
 .chatRoomContent .ant-input-affix-wrapper-focused{
     border-color: thistle;
-    box-shadow: none;
+    box-shadow: 0 0 0 2px rgba(216, 191, 216, 0.4);
 }
 .ant-dropdown-menu-title-content .ant-switch{
     margin-left: 30px;

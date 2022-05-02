@@ -1,4 +1,7 @@
 .chatRoomContent .ant-layout{
+    background-color: white;
+}
+.chatRoomContent .boxHeader{
     background: rgba(216, 203, 216, 0.247);
 }
 .messageBox .ant-avatar-circle{
@@ -8,4 +11,20 @@
 }
 .chatRoomContent .messageBox .ant-col-8{
     margin-top: 3px;
+}
+.messageBox .messageList{
+    height: 90%;
+    height: 90vh;
+    overflow-y: scroll;
+}
+.inputText .ant-input-affix-wrapper{
+    border-radius: 35px;
+    height: 43px;
+    margin-left: 90px;
+    width: 85%;
+    margin-bottom: 30px;
+}
+.inputText .ant-input-affix-wrapper>input.ant-input{
+    font-size: 18px;
+
 }
