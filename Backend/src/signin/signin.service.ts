@@ -8,23 +8,25 @@ import { signinUserReturnType, signinUserType } from './type/signin-user.type';
 @Injectable()
 export class SigninService {
   constructor(
-      private readonly authService: AuthService,
+    private readonly authService: AuthService,
     private readonly jwtService: JwtService,
-  ){}
-  async signin(signinData: SigninDto): Promise<any> 
-  {
+  ) {}
+  async signin(signinData: SigninDto): Promise<any> {
     try {
-      let user = await this.authService.validate(signinData.username,signinData.password);
-      console.log("user: ", user);
+      let user = await this.authService.validate(
+        signinData.username,
+        signinData.password,
+      );
+      console.log('user: ', user);
       let payload: signinUserReturnType = {
         username: user.username,
-        sub: user.id
-      }
+        sub: user.id,
+      };
       return {
         accessToken: this.jwtService.sign(payload),
-      }
+      };
     } catch (error) {
-        console.log(error);
+      console.log(error);
     }
   }
 

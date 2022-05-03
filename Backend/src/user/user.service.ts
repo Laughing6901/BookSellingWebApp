@@ -1,5 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { signinUserTestType, signinUserType } from 'src/signin/type/signin-user.type';
+import {
+  signinUserTestType,
+  signinUserType,
+} from 'src/signin/type/signin-user.type';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 
@@ -13,21 +16,20 @@ export class UserService {
     return `This action returns all user`;
   }
 
-  async findOne(username: string): Promise<signinUserTestType | null> 
-  {
+  async findOne(username: string): Promise<signinUserTestType | null> {
     try {
       //data to test function findOne
       let user: signinUserTestType = {
         username: 'test',
         password: 'test',
         id: '123',
+      };
+      if (username === 'test') {
+        return user;
       }
-      if (username === "test") {
-        return user
-      }
-      return null 
+      return null;
     } catch (error) {
-        console.log(error);
+      console.log(error);
     }
   }
 

@@ -15,10 +15,10 @@ import { ChatModule } from './chat/chat.module';
     //setup connect to mysql database
     // forRootAsync make connect to db asynchronously
     TypeOrmModule.forRootAsync({
-      imports:[ConfigModule], 
-      //useFactory like any other asynchronous provider 
+      imports: [ConfigModule],
+      //useFactory like any other asynchronous provider
       //it able to inject dependencies
-      useFactory:(configService: ConfigService) => ({
+      useFactory: (configService: ConfigService) => ({
         type: 'mysql',
         host: configService.get('DB_HOST') || 'localhost',
         port: +configService.get<number>('DB_PORT') || 3306,
@@ -28,28 +28,30 @@ import { ChatModule } from './chat/chat.module';
         entities: ['dist/src/**/*.entity{.ts,.js}'],
         synchronize: false, // true is Unsafe not use for product and migration
         migrations: ['dist/src/migrations/*{.ts,.js}'],
-        cli: { 
-          migrationsDir: 'src/migrations', 
-        },  
+        cli: {
+          migrationsDir: 'src/migrations',
+        },
       }),
-      inject:[ConfigService],
+      inject: [ConfigService],
     }),
-    
+
     //setup mongodb
     MongooseModule.forRootAsync({
-      imports:[ConfigModule],
+      imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
-        uri: configService.get<string>('MONGODB_URI') ||'mongodb://localhost/nest',
+        uri:
+          configService.get<string>('MONGODB_URI') ||
+          'mongodb://localhost/nest',
       }),
       inject: [ConfigService],
     }),
 
     // setup for using global for config module
     ConfigModule.forRoot({
-      isGlobal: true
+      isGlobal: true,
     }),
 
-    //import module 
+    //import module
     SigninModule,
 
     SignupModule,

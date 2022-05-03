@@ -1,5 +1,5 @@
 export type userFindOneType = {
-    test: string,
-}
+  test: string;
+};
 
 export type findAllUserType = userFindOneType[];

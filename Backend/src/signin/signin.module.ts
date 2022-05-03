@@ -7,7 +7,7 @@ import { AuthModule } from 'src/auth/auth.module';
 import { jwtConstants } from 'src/auth/constant';
 
 @Module({
-  imports:[
+  imports: [
     UserModule,
     AuthModule,
 
@@ -15,8 +15,8 @@ import { jwtConstants } from 'src/auth/constant';
     JwtModule.register({
       secret: jwtConstants.secret,
       signOptions: {
-        expiresIn: 60
-      }
+        expiresIn: 60,
+      },
     }),
   ],
   controllers: [SigninController],
@@ -24,6 +24,6 @@ import { jwtConstants } from 'src/auth/constant';
     SigninService,
     // JwtStrategy
   ],
-  exports:[SigninService]
+  exports: [SigninService],
 })
 export class SigninModule {}
