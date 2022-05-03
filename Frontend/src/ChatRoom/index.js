@@ -17,8 +17,13 @@ import { NavLink } from 'react-router-dom'
 
 const { Sider, Content } = Layout
 
-export default function ChatRoom() {
+export default function ChatRoom(props) {
+  const {id} = props.match.params
+  console.log(props.match)
+  console.log(id)
   const [theme, setTheme] = useState(localStorage.getItem('themeOption'))
+  const [itemActive, setItemActive] = useState();
+
   const body = document.body
   const lightTheme = 'light';
   const darkTheme = 'dark';
@@ -44,6 +49,31 @@ export default function ChatRoom() {
     </Menu>
   )
 
+  const arrayTest = () => {
+    const arrActive = [];
+    const arr = ['Ngoc', 'Tam', 'Dat', 'Sinh'];
+
+    return arr.map((item, index) => {
+      arrActive[index] = 'ant-menu-item-selected'
+
+      return (
+        <Menu.Item key={index} className={`${index === itemActive ? 'ant-menu-item-selected' : ''}` }>
+          <NavLink
+            onClick={() => {
+              setItemActive(index)
+              // console.log(index)
+            }}
+            to={`/room/${index}`}
+            activeStyle={{ fontWeight: 'bold', color: 'rgb(142, 11, 142)' }}
+          >
+            <Avatar size={55} icon={<UserOutlined style={{ fontSize: 32 }} />} />
+            <span className='friendName'>{item}</span>
+          </NavLink>
+        </Menu.Item>
+      )
+    })
+  }
+
   return (
     <div className='chatRoomContent'>
       <Layout hasSider>
@@ -68,14 +98,14 @@ export default function ChatRoom() {
             </Row>
           </div>
           <Menu mode='inline' theme={theme} style={{ borderRight: "none" }} className='boxMenu'>
-            <Menu.Item key="1">
-              <NavLink
-                to={`/room/1`}
-                activeStyle={{ fontWeight: 'bold', color: 'rgb(142, 11, 142)' }}
-              >
-                <Avatar size={55} icon={<UserOutlined style={{ fontSize: 32 }} />} />
-                <span className='friendName'>Sarah Phan</span>
-              </NavLink>
+            {/* <Menu.Item key="1">
+                <NavLink
+                  to={`/room/1`}
+                  activeStyle={{ fontWeight: 'bold', color: 'rgb(142, 11, 142)' }}
+                >
+                  <Avatar size={55} icon={<UserOutlined style={{ fontSize: 32 }} />} />
+                  <span className='friendName'>Sarah Phan</span>
+                </NavLink>
             </Menu.Item>
             <Menu.Item key="2">
               <NavLink
@@ -103,7 +133,8 @@ export default function ChatRoom() {
                 <Avatar size={55} icon={<UserOutlined style={{ fontSize: 32 }} />} />
                 <span className='friendName'>Nguyễn Văn Sinh</span>
               </NavLink>
-            </Menu.Item>
+            </Menu.Item> */}
+            {arrayTest()}
           </Menu>
         </Sider>
         <Layout className="site-layout" style={{ marginLeft: '19.6%' }}>
