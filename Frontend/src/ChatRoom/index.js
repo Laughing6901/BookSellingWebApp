@@ -19,6 +19,17 @@ const { Sider, Content } = Layout
 
 export default function ChatRoom() {
   const [theme, setTheme] = useState(localStorage.getItem('themeOption'))
+  const body = document.body
+  const lightTheme = 'light';
+  const darkTheme = 'dark';
+
+  if (theme === lightTheme || theme === darkTheme) {
+    body.classList.add(theme)
+  }
+  else {
+    body.classList.add(lightTheme)
+    localStorage.setItem('themeOption', 'light')
+  }
 
   const onChangeTheme = (formState) => {
     setTheme(formState)
@@ -56,7 +67,7 @@ export default function ChatRoom() {
               </Col>
             </Row>
           </div>
-          <Menu mode='inline' theme={theme} style={{ borderRight: "none" }}>
+          <Menu mode='inline' theme={theme} style={{ borderRight: "none" }} className='boxMenu'>
             <Menu.Item key="1">
               <NavLink
                 to={`/room/1`}

@@ -76,3 +76,6 @@ body.dark{
 .chatRoomContent .ant-menu-item a:hover{
     color: rgb(142, 11, 142)
 }
+.chatRoomContent .ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected{
+    background-color: rgb(233 217 233) !important;
+}

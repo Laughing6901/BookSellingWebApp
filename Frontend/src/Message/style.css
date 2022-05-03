@@ -1,8 +1,18 @@
+body.light{
+    --background-color: white;
+    --background: rgba(216, 203, 216, 0.247);
+
+}
+body.dark{
+    --background-color: #001529;
+    --background: rgb(233 217 233);
+}
+
 .chatRoomContent .ant-layout{
-    background-color: white;
+    background-color: var(--background-color);
 }
 .chatRoomContent .boxHeader{
-    background: rgba(216, 203, 216, 0.247);
+    background: var(--background);
 }
 .messageBox .ant-avatar-circle{
     margin-top: 8px;
@@ -14,7 +24,7 @@
 }
 .messageBox .messageList{
     height: 90%;
-    height: 90vh;
+    height: 80vh;
     overflow-y: scroll;
 }
 .inputText .ant-input-affix-wrapper{
