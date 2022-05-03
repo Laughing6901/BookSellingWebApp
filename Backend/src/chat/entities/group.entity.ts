@@ -1,22 +1,22 @@
-import { Column, Entity, PrimaryColumn } from 'typeorm';
+import { Column, Entity, PrimaryColumn } from "typeorm";
 
-@Entity('GroupChat')
+@Entity("GroupChat")
 export class GroupChat {
   @PrimaryColumn({
-    name: 'GroupId',
-    type: 'int',
+    name: "GroupId",
+    type: "int",
   })
   GroupId: number;
 
   @Column({
-    name: 'GroupName',
-    type: 'varchar',
+    name: "GroupName",
+    type: "varchar",
   })
   GroupName: string;
 
   @Column({
-    name: 'Avatar',
-    type: 'blob',
+    name: "Avatar",
+    type: "blob",
   })
   Avatar: string;
 }

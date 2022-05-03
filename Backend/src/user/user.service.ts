@@ -1,15 +1,15 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable } from "@nestjs/common";
 import {
   signinUserTestType,
   signinUserType,
-} from 'src/signin/type/signin-user.type';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+} from "src/signin/type/signin-user.type";
+import { CreateUserDto } from "./dto/create-user.dto";
+import { UpdateUserDto } from "./dto/update-user.dto";
 
 @Injectable()
 export class UserService {
   create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+    return "This action adds a new user";
   }
 
   findAll() {
@@ -20,11 +20,11 @@ export class UserService {
     try {
       //data to test function findOne
       let user: signinUserTestType = {
-        username: 'test',
-        password: 'test',
-        id: '123',
+        username: "test",
+        password: "test",
+        id: "123",
       };
-      if (username === 'test') {
+      if (username === "test") {
         return user;
       }
       return null;

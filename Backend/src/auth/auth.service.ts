@@ -1,10 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable } from "@nestjs/common";
 import {
   signinUserTestType,
   signinUserType,
-} from 'src/signin/type/signin-user.type';
-import { UserService } from 'src/user/user.service';
-import { correctValidateReturnType } from './type/data-return.type';
+} from "src/signin/type/signin-user.type";
+import { UserService } from "src/user/user.service";
+import { correctValidateReturnType } from "./type/data-return.type";
 
 @Injectable()
 export class AuthService {
@@ -26,7 +26,7 @@ export class AuthService {
         return null;
       }
     } catch (error) {
-      console.log('error: ', error);
+      console.log("error: ", error);
     }
   }
 }

@@ -1,9 +1,9 @@
-import { Injectable } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
-import { AuthService } from 'src/auth/auth.service';
-import { SigninDto } from './dto/create-signin.dto';
-import { UpdateSigninDto } from './dto/update-signin.dto';
-import { signinUserReturnType, signinUserType } from './type/signin-user.type';
+import { Injectable } from "@nestjs/common";
+import { JwtService } from "@nestjs/jwt";
+import { AuthService } from "src/auth/auth.service";
+import { SigninDto } from "./dto/create-signin.dto";
+import { UpdateSigninDto } from "./dto/update-signin.dto";
+import { signinUserReturnType, signinUserType } from "./type/signin-user.type";
 
 @Injectable()
 export class SigninService {
@@ -17,7 +17,7 @@ export class SigninService {
         signinData.username,
         signinData.password,
       );
-      console.log('user: ', user);
+      console.log("user: ", user);
       let payload: signinUserReturnType = {
         username: user.username,
         sub: user.id,
