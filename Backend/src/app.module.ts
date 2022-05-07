@@ -4,13 +4,12 @@ import { MongooseModule } from "@nestjs/mongoose";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
-import { SigninModule } from "./signin/signin.module";
 import { AuthModule } from "./auth/auth.module";
+import { ChatModule } from "./chat/chat.module";
+import { SigninModule } from "./signin/signin.module";
 import { SignupModule } from "./signup/signup.module";
 import { UserModule } from "./user/user.module";
-import { ChatModule } from "./chat/chat.module";
-import { ConversationSchema } from './chat/schemas/conversation.schema';
-import { MessageSchema } from "./chat/schemas/message.schema";
+import { MessageModule } from './message/message.module';
 
 @Module({
   imports: [
@@ -48,12 +47,6 @@ import { MessageSchema } from "./chat/schemas/message.schema";
       inject: [ConfigService],
     }),
 
-    //config mongodb for schema
-    MongooseModule.forFeature([
-      {name: "Conversation", schema:ConversationSchema},
-      {name: "Message", schema: MessageSchema},
-    ]),
-
     // setup for using global for config module
     ConfigModule.forRoot({
       isGlobal: true,
@@ -69,6 +62,8 @@ import { MessageSchema } from "./chat/schemas/message.schema";
     ChatModule,
 
     AuthModule,
+
+    MessageModule,
   ],
   controllers: [AppController],
   providers: [AppService],
