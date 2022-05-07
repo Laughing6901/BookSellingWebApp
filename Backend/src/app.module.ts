@@ -9,6 +9,8 @@ import { AuthModule } from "./auth/auth.module";
 import { SignupModule } from "./signup/signup.module";
 import { UserModule } from "./user/user.module";
 import { ChatModule } from "./chat/chat.module";
+import { ConversationSchema } from './chat/schemas/conversation.schema';
+import { MessageSchema } from "./chat/schemas/message.schema";
 
 @Module({
   imports: [
@@ -45,6 +47,12 @@ import { ChatModule } from "./chat/chat.module";
       }),
       inject: [ConfigService],
     }),
+
+    //config mongodb for schema
+    MongooseModule.forFeature([
+      {name: "Conversation", schema:ConversationSchema},
+      {name: "Message", schema: MessageSchema},
+    ]),
 
     // setup for using global for config module
     ConfigModule.forRoot({

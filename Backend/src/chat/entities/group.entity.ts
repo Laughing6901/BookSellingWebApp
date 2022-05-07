@@ -1,7 +1,9 @@
-import { Column, Entity, PrimaryColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryColumn } from "typeorm";
+import { GroupMember } from "./member-group.entity";
 
 @Entity("GroupChat")
 export class GroupChat {
+  //Table column config
   @PrimaryColumn({
     name: "GroupId",
     type: "int",
@@ -19,4 +21,9 @@ export class GroupChat {
     type: "blob",
   })
   Avatar: string;
+
+  //Relationship
+  @OneToMany(() => GroupMember, GroupMember => GroupMember.GroupChat)
+  GroupMember: GroupMember[]
+
 }

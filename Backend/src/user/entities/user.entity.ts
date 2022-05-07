@@ -1,7 +1,9 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { GroupMember } from "src/chat/entities/member-group.entity";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity("Users")
 export class User {
+  //Table column config
   @PrimaryGeneratedColumn({
     name: "UserId",
     type: "int",
@@ -65,4 +67,8 @@ export class User {
     type: "string",
   })
   PhoneNumber: string;
+
+  //Relationship
+  @OneToMany(() => GroupMember, GroupMember => GroupMember.User)
+  GroupMember: GroupMember[]
 }
