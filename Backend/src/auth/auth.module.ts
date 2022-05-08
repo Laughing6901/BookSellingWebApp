@@ -7,24 +7,24 @@ import { PassportModule } from "@nestjs/passport";
 import { JwtStrategy } from "./strategies/jwt.strategy";
 
 @Module({
+  //import module if use other service from other module
   imports: [
-    //import module if use other service from other module
     UserModule,
     PassportModule,
   ],
+  //add controller
   controllers: [
-    //add controller
     AuthController,
   ],
+  //provider service if it is a part of module or folder or function
+  //Module can export all provider they have
   providers: [
-    //provider service if it is a part of module or folder or function
-    //Module can export all provider they have
     AuthService,
     LocalStrategy,
     JwtStrategy,
   ],
+  //export service mean that sharing service with another module to use
   exports: [
-    //export service mean that sharing service for another module to use
     AuthService,
   ],
 })

@@ -11,6 +11,8 @@ export class AuthService {
   constructor(private userService: UserService) {}
 
   //validate function for signin
+  //validate user information that exist or not
+  //validate that password right or wrong
   async validate(
     username: string,
     password: string,

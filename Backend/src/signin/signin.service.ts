@@ -8,9 +8,14 @@ import { signinUserReturnType, signinUserType } from "./type/signin-user.type";
 @Injectable()
 export class SigninService {
   constructor(
+    //create object and initial value for fields
+    //initial class AuthService to field authService and just read only
     private readonly authService: AuthService,
+    //initial class JwtService to field jwtService and just read only
     private readonly jwtService: JwtService,
   ) {}
+
+
   async signin(signinData: SigninDto): Promise<any> {
     try {
       let user = await this.authService.validate(

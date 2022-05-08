@@ -1,11 +1,11 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import mongoose from 'mongoose';
-import { Document } from 'mongoose';
-import { ObjectID } from 'typeorm';
+import mongoose, { Document } from 'mongoose';
 import { Message } from './message.schema';
 
+//create conversation document
 export type ConversationDocument = Conversation & Document;
 
+//create schema for mongodb
 @Schema()
 export class Conversation {
   //properties of conversation schema or field of document

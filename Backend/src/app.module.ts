@@ -52,20 +52,26 @@ import { MessageModule } from './message/message.module';
       isGlobal: true,
     }),
 
-    //import module
+    //import module if use other service from other modules
     SigninModule,
-
     SignupModule,
-
     UserModule,
-
     ChatModule,
-
     AuthModule,
-
     MessageModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  
+  //add controller
+  controllers: [
+    AppController
+  ],
+
+  //provider service if it is a part of module or folder or function
+  //Module can export all provider they have
+  providers: [
+  
+    //AppService is a part of AppModule
+    AppService,
+  ],
 })
 export class AppModule {}
