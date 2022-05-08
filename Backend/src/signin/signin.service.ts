@@ -15,7 +15,6 @@ export class SigninService {
     private readonly jwtService: JwtService,
   ) {}
 
-
   async signin(signinData: SigninDto): Promise<any> {
     try {
       let user = await this.authService.validate(

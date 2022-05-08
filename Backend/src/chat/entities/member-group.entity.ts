@@ -8,38 +8,37 @@ export class GroupMember {
   //Table column config
   @PrimaryGeneratedColumn({
     name: "GroupMemberId",
-    type: 'int'
+    type: "int",
   })
   GroupMemberId;
 
   @Column({
-    name: 'JoinDate',
-    type:'datetime'
+    name: "JoinDate",
+    type: "datetime",
   })
   JoinDate;
 
   @Column({
-    name:'LeftDate',
-    type:'datetime'
+    name: "LeftDate",
+    type: "datetime",
   })
   LeftDate;
 
   @Column({
-    name:'Role',
+    name: "Role",
     //set enumtype for db
-    type:'enum',
+    type: "enum",
     //set enum validate for db
     enum: GroupChatRole,
     //set default value for column role
-    default: GroupChatRole.MEMBER
+    default: GroupChatRole.MEMBER,
   })
-  Role: GroupChatRole
+  Role: GroupChatRole;
 
   //Relationship
-  @ManyToOne(() => GroupChat, GroupChat => GroupChat.GroupMember)
+  @ManyToOne(() => GroupChat, (GroupChat) => GroupChat.GroupMember)
   GroupChat: GroupChat;
 
-  @ManyToOne(() => User, User => User.GroupMember)
+  @ManyToOne(() => User, (User) => User.GroupMember)
   User: User;
-
 }

@@ -69,6 +69,6 @@ export class User {
   PhoneNumber: string;
 
   //Relationship
-  @OneToMany(() => GroupMember, GroupMember => GroupMember.User)
-  GroupMember: GroupMember[]
+  @OneToMany(() => GroupMember, (GroupMember) => GroupMember.User)
+  GroupMember: GroupMember[];
 }

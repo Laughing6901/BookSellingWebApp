@@ -23,7 +23,6 @@ export class GroupChat {
   Avatar: string;
 
   //Relationship
-  @OneToMany(() => GroupMember, GroupMember => GroupMember.GroupChat)
-  GroupMember: GroupMember[]
-
+  @OneToMany(() => GroupMember, (GroupMember) => GroupMember.GroupChat)
+  GroupMember: GroupMember[];
 }

@@ -8,24 +8,13 @@ import { JwtStrategy } from "./strategies/jwt.strategy";
 
 @Module({
   //import module if use other service from other module
-  imports: [
-    UserModule,
-    PassportModule,
-  ],
+  imports: [UserModule, PassportModule],
   //add controller
-  controllers: [
-    AuthController,
-  ],
+  controllers: [AuthController],
   //provider service if it is a part of module or folder or function
   //Module can export all provider they have
-  providers: [
-    AuthService,
-    LocalStrategy,
-    JwtStrategy,
-  ],
+  providers: [AuthService, LocalStrategy, JwtStrategy],
   //export service mean that sharing service with another module to use
-  exports: [
-    AuthService,
-  ],
+  exports: [AuthService],
 })
 export class AuthModule {}

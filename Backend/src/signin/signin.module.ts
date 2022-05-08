@@ -7,7 +7,6 @@ import { AuthModule } from "src/auth/auth.module";
 import { jwtConstants } from "src/auth/constant";
 
 @Module({
-  
   //import module if use other service from other modules
   imports: [
     UserModule,
@@ -23,15 +22,11 @@ import { jwtConstants } from "src/auth/constant";
   ],
 
   //add controller
-  controllers: [
-    SigninController,
-  ],
+  controllers: [SigninController],
 
   //provider service if it is a part of module or folder or function
   //Module can export all provider they have
-  providers: [
-    SigninService,
-  ],
+  providers: [SigninService],
 
   //export service mean that sharing service with another module to use
   exports: [SigninService],

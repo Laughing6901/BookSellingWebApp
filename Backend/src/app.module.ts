@@ -9,7 +9,7 @@ import { ChatModule } from "./chat/chat.module";
 import { SigninModule } from "./signin/signin.module";
 import { SignupModule } from "./signup/signup.module";
 import { UserModule } from "./user/user.module";
-import { MessageModule } from './message/message.module';
+import { MessageModule } from "./message/message.module";
 
 @Module({
   imports: [
@@ -60,16 +60,13 @@ import { MessageModule } from './message/message.module';
     AuthModule,
     MessageModule,
   ],
-  
+
   //add controller
-  controllers: [
-    AppController
-  ],
+  controllers: [AppController],
 
   //provider service if it is a part of module or folder or function
   //Module can export all provider they have
   providers: [
-  
     //AppService is a part of AppModule
     AppService,
   ],

@@ -1,18 +1,17 @@
-import { Module } from '@nestjs/common';
-import { MessageService } from './message.service';
-import { MessageGateway } from './message.gateway';
-import { MongooseModule } from '@nestjs/mongoose';
-import { ConversationSchema } from './schemas/conversation.schema';
-import { MessageSchema } from './schemas/message.schema';
+import { Module } from "@nestjs/common";
+import { MessageService } from "./message.service";
+import { MessageGateway } from "./message.gateway";
+import { MongooseModule } from "@nestjs/mongoose";
+import { ConversationSchema } from "./schemas/conversation.schema";
+import { MessageSchema } from "./schemas/message.schema";
 
 @Module({
-
   //import module if use other service from other modules
   imports: [
     //config schema for mongodb to use
     MongooseModule.forFeature([
-      {name: "Conversation", schema:ConversationSchema},
-      {name: "Message", schema: MessageSchema},
+      { name: "Conversation", schema: ConversationSchema },
+      { name: "Message", schema: MessageSchema },
     ]),
   ],
 
@@ -20,14 +19,11 @@ import { MessageSchema } from './schemas/message.schema';
   //Module can export all provider they have
   providers: [
     //All modules below is a part of message Module
-    MessageGateway, 
+    MessageGateway,
     MessageService,
   ],
-  
+
   //export service mean that sharing service with another module to use
-  exports:[
-    MessageGateway, 
-    MessageService,
-  ],
+  exports: [MessageGateway, MessageService],
 })
 export class MessageModule {}

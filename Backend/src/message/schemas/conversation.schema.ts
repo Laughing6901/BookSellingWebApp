@@ -1,6 +1,6 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import mongoose, { Document } from 'mongoose';
-import { Message } from './message.schema';
+import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import mongoose, { Document } from "mongoose";
+import { Message } from "./message.schema";
 
 //create conversation document
 export type ConversationDocument = Conversation & Document;
@@ -16,10 +16,12 @@ export class Conversation {
   UserId: number;
 
   @Prop({
-    type: [{
-      type:mongoose.Schema.Types.ObjectId,
-      ref:'Messages'
-    }]
+    type: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Messages",
+      },
+    ],
   })
   Messages: Message[];
 }

@@ -1,5 +1,5 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import { Document } from "mongoose";
 
 export type MessageDocument = Message & Document;
 
@@ -11,7 +11,7 @@ export class Message {
 
   @Prop()
   UserId: number;
-  
+
   @Prop()
   ConversationId: number;
 
