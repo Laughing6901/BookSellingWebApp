@@ -9,7 +9,7 @@ import { Server, Socket } from "socket.io";
 //webSocketGateway using web socket open "gateway" to keep connect between clients
 //webSocket help to keep realtime communication
 
-//open port 3006 for sending message
+//open gateway(socket) in port 3006 for client connect 
 @WebSocketGateway(3006,{
   cors:{
     origin: "*",
