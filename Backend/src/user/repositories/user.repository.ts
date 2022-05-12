@@ -6,4 +6,6 @@ import { User } from "../entities/user.entity";
 //manage user entity
 @Injectable()
 @EntityRepository(User)
-export class UserRepository extends Repository<User> {}
+export class UserRepository extends Repository<User> {
+  
+}
