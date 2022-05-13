@@ -10,6 +10,8 @@ import { SigninModule } from "./signin/signin.module";
 import { SignupModule } from "./signup/signup.module";
 import { UserModule } from "./user/user.module";
 import { MessageModule } from "./message/message.module";
+import { APP_GUARD } from "@nestjs/core";
+import { RoleGuard } from "./auth/guard/roles.guard";
 
 @Module({
   imports: [
@@ -69,6 +71,10 @@ import { MessageModule } from "./message/message.module";
   providers: [
     //AppService is a part of AppModule
     AppService,
+    {
+      provide: APP_GUARD,
+      useClass: RoleGuard,
+    },
   ],
 })
 export class AppModule {}
