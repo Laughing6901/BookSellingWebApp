@@ -25,12 +25,14 @@ export class MessageGateway implements OnGatewayConnection, OnGatewayInit, OnGat
 
   //when client connect to gateway, this will log the client id
   async handleConnection(client: Socket) {
+    this.server.to(client.id).emit("connected","hello from server");
     this.logger.log(client.id, 'Connected..............................');
   }
 
   //when client disconnect to gateway, this will log the client id
   async handleDisconnect(client: Socket) {
     // need handle remove socketId to table
+    this.server.to(client.id).emit("connected","hello from server");
     this.logger.log(client.id, 'Disconnect');
   }
 
@@ -40,12 +42,12 @@ export class MessageGateway implements OnGatewayConnection, OnGatewayInit, OnGat
   }
 
 
-  //open subcribe "identity" to receive messages from client
-  @SubscribeMessage('identity')
+  //open subscribe "message" to receive messages from client
+  @SubscribeMessage('messages')
   async identity(@MessageBody() data: any): Promise<any> {
     console.log(data);
     //return message to all client
-    this.server.emit("identity-received", data);
+    this.server.emit("messages-received", data);
     return data;
     
   }
