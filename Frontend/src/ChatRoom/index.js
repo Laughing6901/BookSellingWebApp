@@ -22,6 +22,7 @@ export default function ChatRoom(props) {
   console.log(props.match)
   console.log(id)
   const [theme, setTheme] = useState(localStorage.getItem('themeOption'))
+  console.log("theme:",theme);
   const [itemActive, setItemActive] = useState();
 
   const body = document.body
@@ -34,6 +35,7 @@ export default function ChatRoom(props) {
   else {
     body.classList.add(lightTheme)
     localStorage.setItem('themeOption', 'light')
+    setTheme(lightTheme);
   }
 
   const onChangeTheme = (formState) => {
