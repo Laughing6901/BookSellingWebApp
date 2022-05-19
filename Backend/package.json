@@ -20,7 +20,7 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "migration:generate": "yarn build && yarn typeorm migration:generate -- -n",
+    "migration:generate": "yarn build && yarn typeorm migration:generate -n",
     "migration:run": "npm run build && npm run typeorm migration:run"
   },
   "dependencies": {
@@ -32,7 +32,9 @@
     "@nestjs/mongoose": "^9.0.3",
     "@nestjs/passport": "^8.2.1",
     "@nestjs/platform-express": "^8.0.0",
+    "@nestjs/platform-socket.io": "^8.4.4",
     "@nestjs/typeorm": "^8.0.3",
+    "@nestjs/websockets": "^8.4.4",
     "mongoose": "^6.3.1",
     "mysql2": "^2.3.3",
     "passport": "^0.5.2",
