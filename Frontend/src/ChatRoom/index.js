@@ -1,19 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import { MenuOutlined, SearchOutlined, UserOutlined } from '@ant-design/icons'
 import {
   Avatar,
   Col,
   Dropdown,
-  Input,
-  Menu,
-  Row,
+  Input, Layout, Menu,
+  Row
 } from "antd"
-import { MenuOutlined, SearchOutlined, UserOutlined } from '@ant-design/icons'
-import { Layout } from 'antd'
-import "./style.css"
+import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { NavLink, Route } from 'react-router-dom'
 import DarkMode from '../component/DarkMode'
-import { Route } from 'react-router-dom'
 import Message from '../Message'
-import { NavLink } from 'react-router-dom'
+import { startConnecting } from './chatRoomSlice'
+import "./style.css"
 
 const { Sider, Content } = Layout
 
@@ -24,6 +23,7 @@ export default function ChatRoom(props) {
   const [theme, setTheme] = useState(localStorage.getItem('themeOption'))
   console.log("theme:",theme);
   const [itemActive, setItemActive] = useState();
+  const dispatch = useDispatch();
 
   const body = document.body
   const lightTheme = 'light';
@@ -75,6 +75,10 @@ export default function ChatRoom(props) {
       )
     })
   }
+
+  useEffect(() => {
+    dispatch(startConnecting());
+}, [dispatch])
 
   return (
     <div className='chatRoomContent'>

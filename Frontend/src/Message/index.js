@@ -1,9 +1,11 @@
 import { PhoneFilled, UserOutlined, VideoCameraFilled } from '@ant-design/icons'
 import { Avatar, Col, Input, Row } from 'antd'
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import './style.css'
 
 export default function Message() {
+    const dispatch = useDispatch();
     function accessMicro() {
         navigator.mediaDevices.getUserMedia({video: false, audio: true}).then( stream => {
             window.localStream = stream;
@@ -22,6 +24,8 @@ export default function Message() {
             console.log("u got an error:" + err)
         });
     }
+
+    
 
     return (
         <div className='messageBox'>
