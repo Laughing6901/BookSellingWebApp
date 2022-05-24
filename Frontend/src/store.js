@@ -1,8 +1,7 @@
-import {configureStore, getDefaultMiddleware} from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit';
 import chatRoomSlice from './ChatRoom/chatRoomSlice';
+import socketConnectMiddleware from './middleware/socket-connect.middleware';
 import chatMiddleware from './middleware/chat.middleware';
-import crashMiddleware from './middleware/crash.middleware';
-import loggerMiddleware from './middleware/logger.middleware';
 // create redux store
 // redux store save and manage all reducer
 export const store = configureStore({
@@ -10,7 +9,12 @@ export const store = configureStore({
     chatRoom: chatRoomSlice,
   },
   middleware: (getDefaultMiddleware) => {
-    return getDefaultMiddleware().concat([crashMiddleware, loggerMiddleware, chatMiddleware]);
+    return getDefaultMiddleware().concat([
+      // crashMiddleware, 
+      // loggerMiddleware, 
+      socketConnectMiddleware,
+      chatMiddleware,
+    ]);
   }
 
 })

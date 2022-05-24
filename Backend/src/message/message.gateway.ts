@@ -47,7 +47,7 @@ export class MessageGateway implements OnGatewayConnection, OnGatewayInit, OnGat
   async identity(@MessageBody() data: any): Promise<any> {
     console.log(data);
     //return message to all client
-    this.server.emit("messages-received", data);
+    this.server.emit("messages-received", "test messages was received");
     return data;
     
   }
