@@ -1,5 +1,5 @@
  
-const crashMiddleware= store => next => action => {
+export const crashMiddleware= store => next => action => {
   console.log(action);
   console.log('crashMiddleware');
   try {
@@ -9,5 +9,3 @@ const crashMiddleware= store => next => action => {
     throw error;
   }
 }
- 
-export default crashMiddleware;

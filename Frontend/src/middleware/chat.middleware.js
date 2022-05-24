@@ -1,6 +1,6 @@
 
 //middleware handle send and receive chat from server
-const chatMiddleware = store => {
+export const chatMiddleware = store => {
   return next => (action, socket) => {
     //get that socket init or not adn is connected or not
     const isConnectionEstablished =socket && store.getState().chatRoom.isConnected;
@@ -20,6 +20,3 @@ const chatMiddleware = store => {
     next(action);
   }
 }
-
- 
-export default chatMiddleware;

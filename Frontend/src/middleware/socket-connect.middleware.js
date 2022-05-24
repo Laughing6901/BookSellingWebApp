@@ -5,7 +5,7 @@ import { connectionEstablished, startConnecting } from '../ChatRoom/chatRoomSlic
 const host = 'http://localhost:3006';
 
 //middleware handle connect to socket
-const socketConnectMiddleware = store => {
+export const socketConnectMiddleware = store => {
   //create socket variable
   //type of this socket is: Socket
   //assign socket to global to check that socket are connected to server
@@ -32,6 +32,3 @@ const socketConnectMiddleware = store => {
     next(action, socket);
   }
 }
-
- 
-export default socketConnectMiddleware;

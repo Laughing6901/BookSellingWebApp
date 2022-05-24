@@ -1,7 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import chatRoomSlice from './ChatRoom/chatRoomSlice';
-import socketConnectMiddleware from './middleware/socket-connect.middleware';
-import chatMiddleware from './middleware/chat.middleware';
+import { chatMiddleware, socketConnectMiddleware } from './middleware';
 // create redux store
 // redux store save and manage all reducer
 export const store = configureStore({
