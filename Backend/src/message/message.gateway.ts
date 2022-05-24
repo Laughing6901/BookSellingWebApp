@@ -25,14 +25,13 @@ export class MessageGateway implements OnGatewayConnection, OnGatewayInit, OnGat
 
   //when client connect to gateway, this will log the client id
   async handleConnection(client: Socket) {
-    this.server.to(client.id).emit("connected","hello from server");
+    this.server.to(client.id).emit("connected",`hello ${client.id} from server`);
     this.logger.log(client.id, 'Connected..............................');
   }
 
   //when client disconnect to gateway, this will log the client id
   async handleDisconnect(client: Socket) {
     // need handle remove socketId to table
-    this.server.to(client.id).emit("connected","hello from server");
     this.logger.log(client.id, 'Disconnect');
   }
 
