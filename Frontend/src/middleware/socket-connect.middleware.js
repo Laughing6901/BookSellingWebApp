@@ -4,7 +4,7 @@ import { connectionEstablished, startConnecting } from '../ChatRoom/chatRoomSlic
 //host socket server
 const host = 'http://localhost:3006';
 
-//middleware handle connect, send and receive socket
+//middleware handle connect to socket
 const socketConnectMiddleware = store => {
   //create socket variable
   //type of this socket is: Socket
@@ -21,20 +21,13 @@ const socketConnectMiddleware = store => {
       
       // hear the message from server when connected to server
       socket.on('connected', (socketId) => {
+        console.log(socketId);
         //set the connection established
         store.dispatch(connectionEstablished());
         //print the my socketId 
-        console.log(socketId);
       })
     }
-    
-    console.log("connection is established: ",isConnectionEstablished);
-    console.log("socket: ",socket);
-    console.log("connected:",store.getState().chatRoom.isConnected);
-    // if (chatActions.submitMessage.match(action) && isConnectionEstablished) {
-    //   socket.emit(ChatEvent.SendMessage, action.payload.content);
-    // }
- 
+
     //pass to the next action
     next(action, socket);
   }

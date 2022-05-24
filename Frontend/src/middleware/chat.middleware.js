@@ -1,15 +1,11 @@
 
-//host socket server
-const host = 'http://localhost:3006';
-
-//middleware handle connect, send and receive socket
+//middleware handle send and receive chat from server
 const chatMiddleware = store => {
   return next => (action, socket) => {
     //get that socket init or not adn is connected or not
-    const isConnectionEstablished =socket.connected && store.getState().chatRoom.isConnected;
+    const isConnectionEstablished =socket && store.getState().chatRoom.isConnected;
     console.log("isConnect:", isConnectionEstablished);
-    console.log(socket.connected);
-
+    // handle for send messages after fist time connect to socket server
     if(isConnectionEstablished) {
       socket.emit("messages", "test messages was sent");
       socket.on("messages-received", (msg) => {
