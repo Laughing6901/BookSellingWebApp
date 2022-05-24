@@ -23,7 +23,7 @@ import { RoleGuard } from "./auth/guard/roles.guard";
       //it able to inject dependencies
       useFactory: (configService: ConfigService) => ({
         type: "mysql",
-        host: configService.get("DB_HOST") || "localhost",
+        host: configService.get(`${configService.get("NODE_ENV")}_HOST`) || "localhost",
         port: +configService.get<number>("DB_PORT") || 3306,
         username: configService.get("USERNAME") || "root",
         password: configService.get("PASSWORD") || "root",
