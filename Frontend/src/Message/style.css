@@ -1,7 +1,6 @@
 body.light{
     --background-color: white;
     --background: rgba(216, 203, 216, 0.247);
-
 }
 body.dark{
     --background-color: #001529;
@@ -36,5 +35,22 @@ body.dark{
 }
 .inputText .ant-input-affix-wrapper>input.ant-input{
     font-size: 18px;
+}
 
+@media screen and (min-width: 1200px){
+    .accountDetail{
+        margin-left: 24vw;
+    }
+}
+
+@media screen and (max-width: 1200px){
+    .accountDetail{
+        margin-left: 30vw;
+    }
+}
+
+@media screen and (max-width: 992px){
+    .accountDetail{
+        margin-left: 35vw;
+    }
 }

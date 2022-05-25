@@ -1,81 +1,110 @@
 .chatRoomContent .ant-menu {
     background-color: transparent;
 }
+
 .chatRoomContent .ant-layout-sider {
-    overflow: hidden;
     min-width: 300px !important;
     max-width: 320px !important;
     width: 300px !important;
 }
-.chatRoomContent .ant-layout-sider:hover {
+
+.chatRoomContent .ant-layout-sider-children:hover {
     overflow-y: scroll;
 }
+
 .chatRoomContent .ant-menu-inline .ant-menu-item {
     height: 63px;
 }
+
 .chatRoomContent .friendName {
     margin-left: 10px;
     font-size: 20px;
 }
+
 .anticon-menu {
     padding: 10px;
 }
+
 .chatRoomContent .anticon-menu:hover {
     background-color: rgba(216, 191, 216, 0.553);
     border-radius: 30px;
     padding: 10px;
 }
+
 ::-webkit-scrollbar {
     width: 10px;
 }
+
 ::-webkit-scrollbar-thumb {
     background: #80808081;
     border-radius: 10px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
     background: #2f2d2d6d;
 }
-.chatRoomContent .siderHeader .ant-input-affix-wrapper{
+
+.chatRoomContent .siderHeader .ant-input-affix-wrapper {
     margin-top: 10px;
 }
+
 .chatRoomContent .ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):hover {
     border-color: thistle;
 }
-.chatRoomContent .ant-input-affix-wrapper-focused{
+
+.chatRoomContent .ant-input-affix-wrapper-focused {
     border-color: thistle;
     box-shadow: 0 0 0 2px rgba(216, 191, 216, 0.4);
 }
-.ant-dropdown-menu-title-content .ant-switch{
+
+.ant-dropdown-menu-title-content .ant-switch {
     margin-left: 30px;
     min-width: 35px;
     height: 18px;
 }
-.ant-dropdown-menu-title-content .ant-switch .ant-switch-handle{
+
+.ant-dropdown-menu-title-content .ant-switch .ant-switch-handle {
     width: 13px;
     height: 13px;
 }
-body.light{
+
+body.light {
     --color: black;
 }
-body.dark{
+
+body.dark {
     --color: white;
 }
+
 .chatRoomContent .anticon-menu {
     color: var(--color)
 }
-.chatRoomContent .ant-menu-light .ant-menu-item-active, .chatRoomContent .ant-menu-light .ant-menu-item:hover{
+
+.chatRoomContent .ant-menu-light .ant-menu-item-active,
+.chatRoomContent .ant-menu-light .ant-menu-item:hover {
     color: rgb(142, 11, 142);
     background-color: rgba(216, 191, 216, 0.4);
 }
-.chatRoomContent .ant-menu-inline .ant-menu-item:after{
+
+.chatRoomContent .ant-menu-inline .ant-menu-item:after {
     border-right: 3px solid rgb(142, 11, 142);
 }
-.chatRoomContent .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected{
+
+.chatRoomContent .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
     background-color: rgba(216, 191, 216, 0.4)
 }
-.chatRoomContent .ant-menu-item a:hover{
+
+.chatRoomContent .ant-menu-item a:hover {
     color: rgb(142, 11, 142)
 }
-.chatRoomContent .ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected{
+
+.chatRoomContent .ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected {
     background-color: rgb(233 217 233) !important;
+}
+
+.chatRoomContent .ant-layout-sider-collapsed{
+    overflow: hidden;
+    min-width: 0 !important;
+    max-width: 0 !important;
+    width: 0 !important;
 }

@@ -1,4 +1,4 @@
-import { MenuOutlined, SearchOutlined } from '@ant-design/icons'
+import { MenuOutlined, SearchOutlined, UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons'
 import {
   Col,
   Dropdown,
@@ -19,7 +19,7 @@ const { Sider, Content } = Layout
 export default function ChatRoom(props) {
   const { id } = props.match.params
   const url = props.location.pathname
-  
+
   const [theme, setTheme] = useState(localStorage.getItem('themeOption'))
   const dispatch = useDispatch();
 
@@ -51,7 +51,7 @@ export default function ChatRoom(props) {
 
   const renderListName = () => {
     return (
-      <AccountList theme={theme} url={url}/>
+      <AccountList theme={theme} url={url} />
     )
   }
 
@@ -61,14 +61,16 @@ export default function ChatRoom(props) {
 
   return (
     <div className='chatRoomContent'>
-      <Layout hasSider>
+      <Layout>
         <Sider
           style={{
             height: '100vh',
             position: 'fixed',
-            borderRight: '1px solid #f0f0f0'
+            borderRight: '1px solid #f0f0f0',
           }}
           theme={theme}
+          breakpoint="md"
+          collapsedWidth={0}
         >
           <div style={{ marginLeft: 10, marginTop: 18, marginBottom: 18, width: 280 }} className="siderHeader">
             <Row>
@@ -84,7 +86,7 @@ export default function ChatRoom(props) {
           </div>
           {renderListName()}
         </Sider>
-        <Layout className="site-layout" style={{ marginLeft: '19.6%' }}>
+        <Layout className="site-layout">
           <Content>
             <Route
               exact={false}
