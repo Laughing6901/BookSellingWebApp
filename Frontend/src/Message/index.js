@@ -14,11 +14,10 @@ export default function Message() {
         )
     }
 
-    const [trigger, isTrigger] = useState(false)
-    console.log({trigger})
+    const [trigger, isTrigger] = useState(true)
     useEffect(() => {
         dispatch(changeTrigger(trigger))
-    }, [trigger])
+    }, [trigger, dispatch])
 
     return (
         <div className='messageBox'>
@@ -29,7 +28,7 @@ export default function Message() {
                     <div className='inputGroup'>
                         <div className='inputText'>
                             <Input placeholder="Message" allowClear onClick={() => {
-                                isTrigger(true)
+                                isTrigger(!trigger)
                             }}/>
                         </div>
                     </div>

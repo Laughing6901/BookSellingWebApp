@@ -1,8 +1,11 @@
 import { PhoneFilled, UserOutlined, VideoCameraFilled } from '@ant-design/icons'
 import { Avatar, Col, Row } from 'antd'
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
+import { useSelector } from 'react-redux';
 
 export default function BoxHeader() {
+    const trigger = useSelector(state => state.sider.trigger)
+
     function accessMicro() {
         navigator.mediaDevices.getUserMedia({video: false, audio: true}).then( stream => {
             window.localStream = stream;
@@ -22,16 +25,29 @@ export default function BoxHeader() {
         });
     }
 
+    useEffect(() => {
+        const ele = document.getElementById("accountDetailId")
+        console.log(ele)
+        if(trigger){
+            ele.classList.add("triggerStyle")
+            ele.classList.remove("untrigger")
+        }
+        if(!trigger){
+            ele.classList.add("untrigger")
+            ele.classList.remove("triggerStyle")
+        }
+    }, [trigger])
+
     return (
         <div className='boxHeader'>
             <Row>
                 <Col span={20}>
-                    <Row className='accountDetail'>
+                    <Row className='accountDetail' id="accountDetailId" >
                         <Col>
                             <Avatar size={50} icon={<UserOutlined style={{ fontSize: 30 }} />} />
                         </Col>
                         <Col xl={8}>
-                            <h3 style={{ marginBottom: 0, fontSize: 20 }}>Sarah Phan</h3>
+                            <h3 style={{ marginBottom: 0, fontSize: 20 }} id="text">Sarah Phan</h3>
                             <p>Last seen 1/5/2022</p>
                         </Col>
                     </Row>

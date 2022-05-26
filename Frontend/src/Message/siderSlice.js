@@ -10,7 +10,6 @@ const siderSlice = createSlice({
     reducers: {
         changeTrigger(state, action){
             state.trigger = action.payload
-            console.log(123)
         }
     }
 })

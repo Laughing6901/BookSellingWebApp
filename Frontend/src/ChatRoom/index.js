@@ -6,7 +6,7 @@ import {
   Row
 } from "antd"
 import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Route } from 'react-router-dom'
 import DarkMode from '../component/DarkMode'
 import Message from '../Message'
@@ -19,6 +19,7 @@ const { Sider, Content } = Layout
 export default function ChatRoom(props) {
   const { id } = props.match.params
   const url = props.location.pathname
+  const trigger = useSelector(state => state.sider.trigger)
 
   const [theme, setTheme] = useState(localStorage.getItem('themeOption'))
   const dispatch = useDispatch();
@@ -69,8 +70,9 @@ export default function ChatRoom(props) {
             borderRight: '1px solid #f0f0f0',
           }}
           theme={theme}
-          breakpoint="md"
           collapsedWidth={0}
+          collapsible 
+          collapsed={window.innerWidth < 750 ? trigger : false}
         >
           <div style={{ marginLeft: 10, marginTop: 18, marginBottom: 18, width: 280 }} className="siderHeader">
             <Row>
