@@ -47,11 +47,17 @@ body.dark{
     .accountDetail{
         margin-left: 30vw;
     }
+    .inputText .ant-input-affix-wrapper{
+        margin-left: 38%;
+    }
 }
 
 @media screen and (max-width: 992px){
     .accountDetail{
         margin-left: 35vw;
+    }
+    .inputText .ant-input-affix-wrapper{
+        margin-left: 40%;
     }
 }
 
@@ -62,5 +68,7 @@ body.dark{
     .triggerStyle{
         margin-left: 0;
     }
-
+    .inputText .ant-input-affix-wrapper{
+        margin-left: 45%;
+    }
 }
