@@ -64,10 +64,15 @@ export class User {
 
   @Column({
     name: "PhoneNumber",
-    type: "string",
+    type: "varchar",
   })
   PhoneNumber: string;
 
+  @Column({
+    name: "SocketId",
+    type: "varchar"
+  })
+  SocketId: string;
   //Relationship
   @OneToMany(() => GroupMember, (GroupMember) => GroupMember.User)
   GroupMember: GroupMember[];
