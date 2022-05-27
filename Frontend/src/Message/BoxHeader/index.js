@@ -27,6 +27,7 @@ export default function BoxHeader() {
 
     useEffect(() => {
         const ele = document.getElementById("accountDetailId")
+        console.log(ele)
         if(trigger){
             ele.classList.add("triggerStyle")
             ele.classList.remove("untrigger")
