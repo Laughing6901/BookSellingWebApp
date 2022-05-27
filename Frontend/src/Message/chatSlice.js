@@ -1,24 +1,22 @@
-// import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+
+const initialState = {
+  messages:""
+}
+
+const chatSlice = createSlice({
+  name: 'chat',
+  initialState,
+  reducers: {
+    receiveMessage: ((state, action) => {
+      console.log("dispatch done:" ,action.payload.messages);
+    }),
+    sendMessage: ((state, action) => {
+      console.log("message sent: ", action.payload.messages);
+    })
+  },
+});
  
-// const initialState = {
-//   isEstablishingConnection: false,
-//   isConnected: false
-// };
+export const { receiveMessage, sendMessage } = chatSlice.actions;
  
-// const chatSlice = createSlice({
-//   name: 'chat',
-//   initialState,
-//   reducers: {
-//     startConnecting: (state => {
-//       state.isEstablishingConnection = true;
-//     }),
-//     connectionEstablished: (state => {
-//       state.isConnected = true;
-//       state.isEstablishingConnection = true;
-//     }),
-//   },
-// });
- 
-// export const { startConnecting, connectionEstablished } = chatSlice.actions;
- 
-// export default chatSlice.reducer;
+export default chatSlice.reducer;
