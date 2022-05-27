@@ -2146,6 +2146,13 @@
     "asap" "^2.0.0"
     "wrappy" "1"
 
+"dicer@^0.3.1":
+  "integrity" "sha512-ObioMtXnmjYs3aRtpIJt9rgQSPCIhKVkFPip+E9GUDyWl8N435znUxK/JfNwGZJ2wnn5JKQ7Ly3vOK5Q5dylGA=="
+  "resolved" "https://registry.npmjs.org/dicer/-/dicer-0.3.1.tgz"
+  "version" "0.3.1"
+  dependencies:
+    "streamsearch" "^1.1.0"
+
 "dicer@0.2.5":
   "integrity" "sha1-WZbAhrszIYyBLAkL3cCc0S+stw8="
   "resolved" "https://registry.npmjs.org/dicer/-/dicer-0.2.5.tgz"
@@ -5080,6 +5087,11 @@
   "integrity" "sha512-RwNA9Z/7PrK06rYLIzFMlaF+l73iwpzsqRIFgbMLbTcLD6cOao82TaWefPXQvB2fOC4AjuYSEndS7N/mTCbkdQ=="
   "resolved" "https://registry.npmjs.org/statuses/-/statuses-2.0.1.tgz"
   "version" "2.0.1"
+
+"streamsearch@^1.1.0":
+  "integrity" "sha512-Mcc5wHehp9aXz1ax6bZUyY5afg9u2rv5cqQI3mRrYkGC8rW2hM02jWuwjtL++LS5qinSyhj2QfLyNsuc+VsExg=="
+  "resolved" "https://registry.npmjs.org/streamsearch/-/streamsearch-1.1.0.tgz"
+  "version" "1.1.0"
 
 "streamsearch@0.1.2":
   "integrity" "sha1-gIudDlb8Jz2Am6VzOOkpkZoanxo="
