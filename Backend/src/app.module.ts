@@ -1,17 +1,18 @@
 import { Module } from "@nestjs/common";
 import { ConfigModule, ConfigService } from "@nestjs/config";
+import { APP_GUARD } from "@nestjs/core";
 import { MongooseModule } from "@nestjs/mongoose";
 import { TypeOrmModule } from "@nestjs/typeorm";
+import { Connection, createConnection } from "typeorm";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { AuthModule } from "./auth/auth.module";
+import { RoleGuard } from "./auth/guard/roles.guard";
 import { ChatModule } from "./chat/chat.module";
+import { MessageModule } from "./message/message.module";
 import { SigninModule } from "./signin/signin.module";
 import { SignupModule } from "./signup/signup.module";
 import { UserModule } from "./user/user.module";
-import { MessageModule } from "./message/message.module";
-import { APP_GUARD } from "@nestjs/core";
-import { RoleGuard } from "./auth/guard/roles.guard";
 
 @Module({
   imports: [
@@ -19,8 +20,10 @@ import { RoleGuard } from "./auth/guard/roles.guard";
     // forRootAsync make connect to db asynchronously
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
-      //useFactory like any other asynchronous provider
-      //it able to inject dependencies
+      // useClass:TypeOrmConfigService,
+      // it able to inject dependencies
+      inject: [ConfigService],
+      // useFactory like any other asynchronous provider
       useFactory: (configService: ConfigService) => ({
         type: "mysql",
         host: configService.get("DB_HOST") || "localhost",
@@ -30,12 +33,17 @@ import { RoleGuard } from "./auth/guard/roles.guard";
         database: configService.get("DATABASE") || "root",
         entities: ["dist/src/**/*.entity{.ts,.js}"],
         synchronize: false, // true is Unsafe not use for product and migration
+        migrationsRun: true,
         migrations: ["dist/src/migrations/*{.ts,.js}"],
         cli: {
           migrationsDir: "src/migrations",
         },
       }),
-      inject: [ConfigService],
+      connectionFactory: async (options) => {
+        console.log(options);
+        const connection:Connection = await createConnection(options);
+        return connection;
+      },
     }),
 
     //setup mongodb
