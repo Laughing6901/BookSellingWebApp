@@ -4,6 +4,7 @@ import { connectionEstablished, startConnecting } from '../ChatRoom/chatRoomSlic
 //host socket server
 const host = 'http://localhost:3006';
 
+
 //middleware handle connect to socket
 export const socketConnectMiddleware = store => {
   //create socket variable

@@ -1,21 +1,35 @@
 
+import { connectionEstablished } from '../ChatRoom/chatRoomSlice';
+import { receiveMessage, sendMessage } from '../Message/chatSlice';
+import ChatEvent from '../Message/messageEvent';
 //middleware handle send and receive chat from server
 export const chatMiddleware = store => {
   return next => (action, socket) => {
     //get that socket init or not adn is connected or not
     const isConnectionEstablished =socket && store.getState().chatRoom.isConnected;
     console.log("isConnect:", isConnectionEstablished);
+    console.log(action.type);
     // handle for send messages after fist time connect to socket server
-    if(isConnectionEstablished) {
-      socket.emit("messages", "test messages was sent");
-      socket.on("messages-received", (msg) => {
-        console.log(msg)
-      })
-    }
-      // if (chatActions.submitMessage.match(action) && isConnectionEstablished) {
-    //   socket.emit(ChatEvent.SendMessage, action.payload.content);
-    // }
+    if(socket.connected){
+      switch (action.type) {
+        //send messages
+        case sendMessage.type:
+            socket.emit(`${ChatEvent.SendMessage}`, action.payload.content);
+          break;
 
+        //receive messages
+        case connectionEstablished.type:
+          console.log(action.type);
+          socket.on(`${ChatEvent.ReceiveMessage}`, (msg) => {
+            console.log(msg);
+          })
+          break;
+        
+        default:
+          console.log("default");
+          break;
+    }
+  }
     //pass to the next action
     next(action);
   }

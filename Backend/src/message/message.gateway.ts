@@ -1,4 +1,5 @@
 import { HttpException, HttpStatus, Logger } from "@nestjs/common";
+import { ConfigService } from "@nestjs/config";
 import {
   MessageBody, OnGatewayConnection, OnGatewayDisconnect, OnGatewayInit, SubscribeMessage, WebSocketGateway, WebSocketServer
 } from "@nestjs/websockets";
@@ -42,11 +43,11 @@ export class MessageGateway implements OnGatewayConnection, OnGatewayInit, OnGat
 
 
   //open subscribe "message" to receive messages from client
-  @SubscribeMessage('messages')
+  @SubscribeMessage('send_messages')
   async identity(@MessageBody() data: any): Promise<any> {
     console.log(data);
     //return message to all client
-    this.server.emit("messages-received", "test messages was received");
+    this.server.emit("receive_messages", data);
     return data;
     
   }
