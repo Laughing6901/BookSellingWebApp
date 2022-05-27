@@ -30,6 +30,7 @@ import { RoleGuard } from "./auth/guard/roles.guard";
         database: configService.get("DATABASE") || "root",
         entities: ["dist/src/**/*.entity{.ts,.js}"],
         synchronize: false, // true is Unsafe not use for product and migration
+        migrationsRun: true,
         migrations: ["dist/src/migrations/*{.ts,.js}"],
         cli: {
           migrationsDir: "src/migrations",
