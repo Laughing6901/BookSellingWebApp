@@ -3,11 +3,13 @@ import { Button, Form, Input, Row, Col } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import BoxHeader from './BoxHeader'
+import { sendMessage } from './chatSlice'
 import { changeTrigger } from './siderSlice'
 import './style.css'
 
 export default function Message() {
     const dispatch = useDispatch();
+    const [trigger, isTrigger] = useState(true)
 
     const renderBoxHeader = () => {
         return (
@@ -15,13 +17,13 @@ export default function Message() {
         )
     }
 
-    const [trigger, isTrigger] = useState(true)
-    useEffect(() => {
-        dispatch(changeTrigger(trigger))
-    }, [trigger, dispatch])
+    // useEffect(() => {
+    //     dispatch(changeTrigger(trigger))
+    // }, [trigger, dispatch])
 
     const receiveMessage = (values) => {
         console.log(values)
+        dispatch(sendMessage(values));
     }
 
     return (

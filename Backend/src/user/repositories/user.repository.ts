@@ -7,5 +7,7 @@ import { User } from "../entities/user.entity";
 @Injectable()
 @EntityRepository(User)
 export class UserRepository extends Repository<User> {
-  
+  public async findAll(): Promise<any> {
+    return await this.findAll();
+  }
 }

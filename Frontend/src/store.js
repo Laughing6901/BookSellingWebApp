@@ -15,7 +15,7 @@ export const store = configureStore({
       // crashMiddleware, 
       // loggerMiddleware, 
       socketConnectMiddleware,
-      // chatMiddleware,
+      chatMiddleware,
     ]);
   }
 
