@@ -1,7 +1,6 @@
 body.light{
     --background-color: white;
     --background: rgba(216, 203, 216, 0.247);
-
 }
 body.dark{
     --background-color: #001529;
@@ -27,14 +26,57 @@ body.dark{
     height: 80vh;
     overflow-y: scroll;
 }
-.inputText .ant-input-affix-wrapper{
+.inputMessage .ant-input-affix-wrapper{
     border-radius: 35px;
     height: 43px;
-    margin-left: 90px;
-    width: 85%;
+    margin-left: 23%;
     margin-bottom: 30px;
 }
-.inputText .ant-input-affix-wrapper>input.ant-input{
+.inputMessage .ant-input-affix-wrapper>input.ant-input{
     font-size: 18px;
+}
+.sendMessage .ant-row{
+    justify-content: center
+}
+.ant-btn-default{
+    margin-left: 85%;
+    border: none;
+}
+.anticon-send{
+    font-size: 25px;
+    color: rgb(142, 11, 142);
+    margin-top: 5px;
+}
+@media screen and (min-width: 1200px){
+    .accountDetail{
+        margin-left: 24vw;
+    }
+}
 
+@media screen and (max-width: 1200px){
+    .accountDetail{
+        margin-left: 30vw;
+    }
+    .ant-btn-default{
+        margin-left: 125%;
+    }
+    .inputMessage .ant-input-affix-wrapperP{
+        margin-left: 40%;
+        width: 95%;
+    }
+}
+
+@media screen and (max-width: 992px){
+    .accountDetail{
+        margin-left: 35vw;
+    }
+}
+
+@media screen and (max-width: 750px){
+    .untrigger{
+        margin-left: 38vw;
+    }
+    .triggerStyle{
+        margin-left: 0;
+    }
 }

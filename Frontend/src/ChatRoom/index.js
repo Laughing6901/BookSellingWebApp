@@ -1,28 +1,27 @@
-import { MenuOutlined, SearchOutlined, UserOutlined } from '@ant-design/icons'
+import { MenuOutlined, SearchOutlined, UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons'
 import {
-  Avatar,
   Col,
   Dropdown,
   Input, Layout, Menu,
   Row
 } from "antd"
 import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { NavLink, Route } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { Route } from 'react-router-dom'
 import DarkMode from '../component/DarkMode'
 import Message from '../Message'
+import AccountList from './AccountList'
 import { startConnecting } from './chatRoomSlice'
 import "./style.css"
 
 const { Sider, Content } = Layout
 
 export default function ChatRoom(props) {
-  const {id} = props.match.params
-  console.log(props.match)
-  console.log(id)
+  const { id } = props.match.params
+  const url = props.location.pathname
+  const trigger = useSelector(state => state.sider.trigger)
+
   const [theme, setTheme] = useState(localStorage.getItem('themeOption'))
-  console.log("theme:",theme);
-  const [itemActive, setItemActive] = useState();
   const dispatch = useDispatch();
 
   const body = document.body
@@ -51,45 +50,29 @@ export default function ChatRoom(props) {
     </Menu>
   )
 
-  const arrayTest = () => {
-    const arrActive = [];
-    const arr = ['Ngoc', 'Tam', 'Dat', 'Sinh'];
-
-    return arr.map((item, index) => {
-      arrActive[index] = 'ant-menu-item-selected'
-
-      return (
-        <Menu.Item key={index} className={`${index === itemActive ? 'ant-menu-item-selected' : ''}` }>
-          <NavLink
-            onClick={() => {
-              setItemActive(index)
-              // console.log(index)
-            }}
-            to={`/room/${index}`}
-            activeStyle={{ fontWeight: 'bold', color: 'rgb(142, 11, 142)' }}
-          >
-            <Avatar size={55} icon={<UserOutlined style={{ fontSize: 32 }} />} />
-            <span className='friendName'>{item}</span>
-          </NavLink>
-        </Menu.Item>
-      )
-    })
+  const renderListName = () => {
+    return (
+      <AccountList theme={theme} url={url} />
+    )
   }
 
   useEffect(() => {
     dispatch(startConnecting());
-}, [dispatch])
+  }, [dispatch])
 
   return (
     <div className='chatRoomContent'>
-      <Layout hasSider>
+      <Layout>
         <Sider
           style={{
             height: '100vh',
             position: 'fixed',
-            borderRight: '1px solid #f0f0f0'
+            borderRight: '1px solid #f0f0f0',
           }}
           theme={theme}
+          collapsedWidth={0}
+          collapsible 
+          collapsed={window.innerWidth < 750 ? trigger : false}
         >
           <div style={{ marginLeft: 10, marginTop: 18, marginBottom: 18, width: 280 }} className="siderHeader">
             <Row>
@@ -103,47 +86,9 @@ export default function ChatRoom(props) {
               </Col>
             </Row>
           </div>
-          <Menu mode='inline' theme={theme} style={{ borderRight: "none" }} className='boxMenu'>
-            {/* <Menu.Item key="1">
-                <NavLink
-                  to={`/room/1`}
-                  activeStyle={{ fontWeight: 'bold', color: 'rgb(142, 11, 142)' }}
-                >
-                  <Avatar size={55} icon={<UserOutlined style={{ fontSize: 32 }} />} />
-                  <span className='friendName'>Sarah Phan</span>
-                </NavLink>
-            </Menu.Item>
-            <Menu.Item key="2">
-              <NavLink
-                to={`/room/2`}
-                activeStyle={{ fontWeight: 'bold', color: 'rgb(142, 11, 142)' }}
-              >
-                <Avatar size={55} icon={<UserOutlined style={{ fontSize: 32 }} />} />
-                <span className='friendName'>Nguyễn Tâm</span>
-              </NavLink>
-            </Menu.Item>
-            <Menu.Item key="3">
-              <NavLink
-                to={`/room/3`}
-                activeStyle={{ fontWeight: 'bold', color: 'rgb(142, 11, 142)' }}
-              >
-                <Avatar size={55} icon={<UserOutlined style={{ fontSize: 32 }} />} />
-                <span className='friendName'>Đạt Nguyễn</span>
-              </NavLink>
-            </Menu.Item>
-            <Menu.Item key="4">
-              <NavLink
-                to={`/room/4`}
-                activeStyle={{ fontWeight: 'bold', color: 'rgb(142, 11, 142)' }}
-              >
-                <Avatar size={55} icon={<UserOutlined style={{ fontSize: 32 }} />} />
-                <span className='friendName'>Nguyễn Văn Sinh</span>
-              </NavLink>
-            </Menu.Item> */}
-            {arrayTest()}
-          </Menu>
+          {renderListName()}
         </Sider>
-        <Layout className="site-layout" style={{ marginLeft: '19.6%' }}>
+        <Layout className="site-layout">
           <Content>
             <Route
               exact={false}
