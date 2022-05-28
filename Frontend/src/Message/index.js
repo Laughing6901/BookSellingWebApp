@@ -1,70 +1,61 @@
-import { PhoneFilled, UserOutlined, VideoCameraFilled } from '@ant-design/icons'
-import { Avatar, Col, Input, Row } from 'antd'
-import React from 'react'
+import { SendOutlined } from '@ant-design/icons'
+import { Button, Form, Input, Row, Col } from 'antd'
+import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import BoxHeader from './BoxHeader'
+import { changeTrigger } from './siderSlice'
 import './style.css'
 
 export default function Message() {
-    function accessMicro() {
-        navigator.mediaDevices.getUserMedia({video: false, audio: true}).then( stream => {
-            window.localStream = stream;
-            window.localAudio.srcObject = stream;
-            window.localAudio.autoplay = true;
-        }).catch( err => {
-            console.log("u got an error:" + err)
-        });
+    const dispatch = useDispatch();
+
+    const renderBoxHeader = () => {
+        return (
+            <BoxHeader />
+        )
     }
-    function accessCamera() {
-        navigator.mediaDevices.getUserMedia({video: true, audio: true}).then( stream => {
-            window.localStream = stream;
-            window.localAudio.srcObject = stream;
-            window.localAudio.autoplay = true;
-        }).catch( err => {
-            console.log("u got an error:" + err)
-        });
+
+    const [trigger, isTrigger] = useState(true)
+    useEffect(() => {
+        dispatch(changeTrigger(trigger))
+    }, [trigger, dispatch])
+
+    const receiveMessage = (values) => {
+        console.log(values)
     }
 
     return (
         <div className='messageBox'>
-            <div className='boxHeader'>
-                <Row>
-                    <Col span={20}>
-                        <Row>
-                            <Col>
-                                <Avatar size={50} icon={<UserOutlined style={{ fontSize: 30 }} />} />
-                            </Col>
-                            <Col span={8}>
-                                <h3 style={{ marginBottom: 0, fontSize: 20 }}>Sarah Phan</h3>
-                                <p>Last seen 1/5/2022</p>
-                            </Col>
-                        </Row>
-                    </Col>
-                    <Col span={4}>
-                        <Row>
-                            <Col>
-                                <PhoneFilled 
-                                style={{marginRight: 40, fontSize: 25, marginTop: 20}} 
-                                onClick = {accessMicro}
-                                />
-                            </Col>
-                            <Col>
-                                <VideoCameraFilled 
-                                style={{ fontSize: 25, marginTop: 20}}
-                                onClick = {accessCamera}
-                                />
-                            </Col>
-                        </Row>
-                    </Col>
-                </Row>
-            </div>
+            {renderBoxHeader()}
             <div className='messageList'></div>
             <div className='sendMessage'>
-                <form>
-                    <div className='inputGroup'>
-                        <div className='inputText'>
-                            <Input placeholder="Message" allowClear />
-                        </div>
-                    </div>
-                </form>
+                <Form
+                    onFinish={receiveMessage}
+                >
+                    <Row className="inputMessage">
+                        <Col span={14}>
+                            <Form.Item
+                                name="messageInput"
+                            >
+                                <Input
+                                    placeholder="Message"
+                                    allowClear
+                                    onClick={() => {
+                                        isTrigger(!trigger)
+                                    }}
+                                />
+                            </Form.Item>
+                        </Col>
+                        <Col span={4}>
+                            <Form.Item>
+                                <Button htmlType='submit'>
+                                    <SendOutlined />
+                                </Button>
+                            </Form.Item>
+                        </Col>
+                    </Row>
+
+                </Form>
             </div>
         </div>
     )
