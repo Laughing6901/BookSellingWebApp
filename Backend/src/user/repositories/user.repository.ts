@@ -1,13 +1,26 @@
-import { Injectable } from "@nestjs/common";
 import { EntityRepository, Repository } from "typeorm";
 import { User } from "../entities/user.entity";
+import { userType } from "../type/find-user.type";
 
 //repository like entity manager
 //manage user entity
-@Injectable()
 @EntityRepository(User)
 export class UserRepository extends Repository<User> {
-  public async findAll(): Promise<any> {
-    return await this.findAll();
+  async findOneByEmail(email: string): Promise<userType | null> {
+    let result:userType = await this.findOne({
+      where:{
+        Email: email
+      }
+    })
+    return result
+  }
+  
+  async findOneById(id: string): Promise<userType | null> {
+    let result:userType = await this.findOne({
+      where:{
+        UserId: parseInt(id)
+      }
+    })
+    return result
   }
 }

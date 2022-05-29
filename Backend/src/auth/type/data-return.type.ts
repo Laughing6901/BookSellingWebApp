@@ -1,4 +1,4 @@
 export type correctValidateReturnType = {
-  username: string;
-  id: string;
+  Email: string;
+  UserId: number;
 };

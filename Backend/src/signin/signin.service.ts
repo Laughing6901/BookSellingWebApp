@@ -1,6 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import { AuthService } from "src/auth/auth.service";
+import { correctValidateReturnType } from "src/auth/type/data-return.type";
 import { SigninDto } from "./dto/create-signin.dto";
 import { UpdateSigninDto } from "./dto/update-signin.dto";
 import { signinUserReturnType, signinUserType } from "./type/signin-user.type";
@@ -17,14 +18,14 @@ export class SigninService {
 
   async signin(signinData: SigninDto): Promise<any> {
     try {
-      let user = await this.authService.validate(
-        signinData.username,
+      let user:correctValidateReturnType = await this.authService.validate(
+        signinData.email,
         signinData.password,
       );
       console.log("user: ", user);
       let payload: signinUserReturnType = {
-        username: user.username,
-        sub: user.id,
+        username: user.Email,
+        sub: `${user.UserId}`,
       };
       return {
         accessToken: this.jwtService.sign(payload),

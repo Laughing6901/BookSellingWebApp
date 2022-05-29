@@ -10,7 +10,7 @@ export class AuthController {
 
   @Roles(GroupChatRole.ADMIN)
   async test(): Promise<any> {
-    let result :correctValidateReturnType = await this.authService.validate("test", "try");
+    let result: correctValidateReturnType = await this.authService.validate("test", "try");
     if (result === null) {
       console.log(result);
       throw new HttpException(
