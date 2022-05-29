@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import * as bcrypt from 'bcrypt';
-import { userType } from "src/user/type/find-user.type";
+import { userType } from "src/user/type/user.type";
 import { UserService } from "src/user/user.service";
 import { correctValidateReturnType } from "./type/data-return.type";
 

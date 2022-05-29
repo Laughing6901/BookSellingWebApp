@@ -1,11 +1,10 @@
 import {
   Body, Controller, Delete, Get, HttpException,
-  HttpStatus, Param, Patch, Post, UseGuards
+  HttpStatus, Param, Patch, Post
 } from "@nestjs/common";
-import { JwtGuard } from "src/auth/guard/jwt.guard";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
-import { userType, userTypeNotPass } from "./type/find-user.type";
+import { userType } from "./type/user.type";
 import { UserService } from "./user.service";
 
 @Controller("user")
@@ -33,7 +32,7 @@ export class UserController {
         HttpStatus.NOT_FOUND,
       );
     }
-    let listUserAfter:userTypeNotPass[] = listUser.map(item => {
+    let listUserAfter:userType[] = listUser.map(item => {
       let {Password, ...result} = item;
       return result
     })

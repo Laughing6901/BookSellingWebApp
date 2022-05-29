@@ -1,6 +1,7 @@
 import { GroupMember } from "src/chat/entities/member-group.entity";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { Gender } from "../type/gender.type";
+import { Gender } from "../type/user.type";
+
 
 @Entity("Users")
 export class User {

@@ -1,6 +1,6 @@
 import { EntityRepository, Repository } from "typeorm";
 import { User } from "../entities/user.entity";
-import { userType } from "../type/find-user.type";
+import { userType, userTypeUpdate } from "../type/user.type";
 
 //repository like entity manager
 //manage user entity
@@ -22,5 +22,10 @@ export class UserRepository extends Repository<User> {
       }
     })
     return result
+  }
+
+  async updateUser(id:number, newUser:userTypeUpdate): Promise<any> {
+    let result = this.update({UserId: id}, newUser);
+    console.log(result);
   }
 }
