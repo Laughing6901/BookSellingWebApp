@@ -1,5 +1,6 @@
 import { GroupMember } from "src/chat/entities/member-group.entity";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Gender } from "../type/gender.type";
 
 @Entity("Users")
 export class User {
@@ -27,13 +28,14 @@ export class User {
   @Column({
     name: "Avatar",
     type: "blob",
+    nullable: true
   })
   Avatar: string;
 
   @Column({
     name: "Password",
     type: "varchar",
-    length: 20,
+    length: 60,
   })
   Password: string;
 
@@ -45,32 +47,37 @@ export class User {
 
   @Column({
     name: "Gender",
-    type: "varchar",
-    length: 6,
+    type: "enum",
+    enum: Gender,
+    default: Gender.MALE,
   })
   Gender: string;
 
   @Column({
     name: "DateOfBirth",
     type: "date",
+    nullable: true
   })
   DateOfBirth: Date;
 
   @Column({
     name: "Address",
     type: "varchar",
+    nullable: true
   })
   Address: string;
 
   @Column({
     name: "PhoneNumber",
     type: "varchar",
+    nullable: true
   })
   PhoneNumber: string;
 
   @Column({
     name: "SocketId",
-    type: "varchar"
+    type: "varchar",
+    nullable: true
   })
   SocketId: string;
   //Relationship

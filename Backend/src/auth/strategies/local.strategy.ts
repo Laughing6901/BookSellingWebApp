@@ -8,10 +8,10 @@ import { AuthService } from "../auth.service";
 export class LocalStrategy extends PassportStrategy(Strategy) {
   constructor(private authService: AuthService) {
     //call constructor of nearest parent class
-    super();
+    // super();
 
     //can modify specific object by using
-    //super({usernameField: 'email'});
+    super({usernameField: 'Email'});
   }
 
   async validate(username: string, password: string): Promise<any> {
