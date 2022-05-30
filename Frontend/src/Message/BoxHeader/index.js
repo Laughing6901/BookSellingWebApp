@@ -40,8 +40,8 @@ export default function BoxHeader() {
     return (
         <div className='boxHeader'>
             <Row>
-                <Col span={20}>
-                    <Row className='accountDetail' id="accountDetailId" >
+                <Col sm={18} xl={20}>
+                    <Row className='accountDetail' >
                         <Col>
                             <Avatar size={50} icon={<UserOutlined style={{ fontSize: 30 }} />} />
                         </Col>
@@ -51,7 +51,7 @@ export default function BoxHeader() {
                         </Col>
                     </Row>
                 </Col>
-                <Col span={4}>
+                <Col sm={6} xl={4}>
                     <Row>
                         <Col>
                             <PhoneFilled

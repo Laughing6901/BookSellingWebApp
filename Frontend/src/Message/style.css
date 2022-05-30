@@ -53,16 +53,8 @@ body.dark{
     color: rgb(142, 11, 142);
     margin-top: 5px;
 }
-@media screen and (min-width: 1200px){
-    .accountDetail{
-        margin-left: 5vw;
-    }
-}
 
 @media screen and (max-width: 1200px){
-    .accountDetail{
-        margin-left: 30vw;
-    }
     .ant-btn-default{
         margin-left: 125%;
     }
@@ -73,9 +65,6 @@ body.dark{
 }
 
 @media screen and (max-width: 992px){
-    .accountDetail{
-        margin-left: 35vw;
-    }
     .inputMessage .ant-input-affix-wrapper{
         margin-left: 50%;
         width: 84%;

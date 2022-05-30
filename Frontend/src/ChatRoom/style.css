@@ -3,14 +3,10 @@
 }
 
 .chatRoomContent .ant-layout-sider {
-    /* border-right: 1px solid black !important; */
+    overflow: visible !important;
     min-width: 250px !important;
     max-width: 320px !important;
     width: 255px !important;
-}
-
-.chatRoomContent .ant-layout-sider-children{
-    border-right: 1px solid rgba(0,0,0,.25);
 }
 
 .chatRoomContent .ant-layout-sider-children:hover {
@@ -107,11 +103,12 @@ body.dark {
     background-color: rgb(233 217 233) !important;
 }
 
-/* .chatRoomContent .ant-layout-sider-collapsed{
+.chatRoomContent .ant-layout-sider-collapsed{
+    overflow: visible !important;
     min-width: 0 !important;
     max-width: 0 !important;
     width: 0 !important;
-} */
-/* .ant-layout-sider-light .ant-layout-sider-zero-width-trigger{
-    display: none;
-} */
+}
+.chatRoomContent .ant-layout-sider-children{
+    border-right: 1px solid rgba(0,0,0,.25);
+}
