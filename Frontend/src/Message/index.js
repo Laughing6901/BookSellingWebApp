@@ -17,8 +17,20 @@ export default function Message() {
 
     const [trigger, isTrigger] = useState(true)
     useEffect(() => {
+        console.log({trigger})
         dispatch(changeTrigger(trigger))
-    }, [trigger, dispatch])
+        // const ele = document.getElementsByClassName("ant-input-affix-wrapper")[1]
+        // if(trigger){
+        //     ele.className += ' inputTrigger'
+        // }
+        // if(!trigger){
+        //     for(var i = 0; i < ele.length; i++){
+        //         ele.className += " inputUntrigger"
+        //     }
+        // }
+        
+    }, [trigger])
+    
 
     const receiveMessage = (values) => {
         console.log(values)
@@ -40,9 +52,9 @@ export default function Message() {
                                 <Input
                                     placeholder="Message"
                                     allowClear
-                                    onClick={() => {
-                                        isTrigger(!trigger)
-                                    }}
+                                    // onClick={() => {
+                                    //     isTrigger(!trigger)
+                                    // }}
                                 />
                             </Form.Item>
                         </Col>

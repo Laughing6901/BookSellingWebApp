@@ -25,17 +25,17 @@ export default function BoxHeader() {
         });
     }
 
-    useEffect(() => {
-        const ele = document.getElementById("accountDetailId")
-        if(trigger){
-            ele.classList.add("triggerStyle")
-            ele.classList.remove("untrigger")
-        }
-        if(!trigger){
-            ele.classList.add("untrigger")
-            ele.classList.remove("triggerStyle")
-        }
-    }, [trigger])
+    // useEffect(() => {
+    //     const ele = document.getElementById("accountDetailId")
+    //     if(trigger){
+    //         ele.classList.add("triggerStyle")
+    //         ele.classList.remove("untrigger")
+    //     }
+    //     if(!trigger){
+    //         ele.classList.add("untrigger")
+    //         ele.classList.remove("triggerStyle")
+    //     }
+    // }, [trigger])
 
     return (
         <div className='boxHeader'>

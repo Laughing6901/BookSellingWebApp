@@ -13,6 +13,12 @@ body.dark{
 .chatRoomContent .boxHeader{
     background: var(--background);
 }
+.messageList{
+    background-color: var(--background-color);
+}
+.sendMessage{
+    background-color: var(--background-color);
+}
 .messageBox .ant-avatar-circle{
     margin-top: 8px;
     margin-right: 12px;
@@ -30,7 +36,7 @@ body.dark{
     border-radius: 35px;
     height: 43px;
     margin-left: 23%;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 .inputMessage .ant-input-affix-wrapper>input.ant-input{
     font-size: 18px;
@@ -49,7 +55,7 @@ body.dark{
 }
 @media screen and (min-width: 1200px){
     .accountDetail{
-        margin-left: 24vw;
+        margin-left: 5vw;
     }
 }
 
@@ -60,9 +66,9 @@ body.dark{
     .ant-btn-default{
         margin-left: 125%;
     }
-    .inputMessage .ant-input-affix-wrapperP{
-        margin-left: 40%;
-        width: 95%;
+    .inputMessage .ant-input-affix-wrapper{
+        margin-left: 33%;
+        width: 100%;
     }
 }
 
@@ -70,13 +76,24 @@ body.dark{
     .accountDetail{
         margin-left: 35vw;
     }
+    .inputMessage .ant-input-affix-wrapper{
+        margin-left: 50%;
+        width: 84%;
+    }
 }
 
-@media screen and (max-width: 750px){
+/* @media screen and (max-width: 750px){
     .untrigger{
         margin-left: 38vw;
     }
     .triggerStyle{
         margin-left: 0;
     }
-}
+    .sendMessage .inputTrigger{
+        margin-left: 0;
+        width: 130%;
+    }
+    .inputUntrigger{
+        margin-left: 50%;
+    }
+} */

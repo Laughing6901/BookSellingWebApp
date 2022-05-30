@@ -62,33 +62,36 @@ export default function ChatRoom(props) {
 
   return (
     <div className='chatRoomContent'>
-      <Layout>
-        <Sider
-          style={{
-            height: '100vh',
-            position: 'fixed',
-            borderRight: '1px solid #f0f0f0',
-          }}
-          theme={theme}
-          collapsedWidth={0}
-          collapsible 
-          collapsed={window.innerWidth < 750 ? trigger : false}
-        >
-          <div style={{ marginLeft: 10, marginTop: 18, marginBottom: 18, width: 280 }} className="siderHeader">
-            <Row>
-              <Col span={5}>
-                <Dropdown overlay={menu} trigger={['click']}>
-                  <MenuOutlined style={{ fontSize: 28 }} theme={theme} />
-                </Dropdown>
-              </Col>
-              <Col>
-                <Input suffix={<SearchOutlined />} />
-              </Col>
-            </Row>
-          </div>
-          {renderListName()}
-        </Sider>
-        <Layout className="site-layout">
+      <Row>
+        <Col span={4}>
+          <Sider
+            style={{
+              height: '100vh',
+              position: 'fixed',
+              borderRight: '1px solid #f0f0f0',
+            }}
+            theme={theme}
+            breakpoint="md"
+            collapsedWidth={0}
+          // collapsible 
+          // collapsed={window.innerWidth < 750 ? trigger : false}
+          >
+            <div style={{ marginLeft: 10, marginTop: 18, marginBottom: 18, width: 280 }} className="siderHeader">
+              <Row>
+                <Col span={4}>
+                  <Dropdown overlay={menu} trigger={['click']}>
+                    <MenuOutlined style={{ fontSize: 24 }} theme={theme} />
+                  </Dropdown>
+                </Col>
+                <Col>
+                  <Input suffix={<SearchOutlined />} style={{width: '90%'}}/>
+                </Col>
+              </Row>
+            </div>
+            {renderListName()}
+          </Sider>
+        </Col>
+        <Col span={20}>
           <Content>
             <Route
               exact={false}
@@ -96,8 +99,9 @@ export default function ChatRoom(props) {
               component={Message}
             />
           </Content>
-        </Layout>
-      </Layout>
+        </Col>
+      </Row>
+
     </div>
   )
 }
