@@ -18,27 +18,6 @@ import typeOrmConfig from "ormconfig";
   imports: [
     //setup connect to mysql database
     // forRootAsync make connect to db asynchronously
-    // TypeOrmModule.forRootAsync({
-    //   imports: [ConfigModule],
-    //   //useFactory like any other asynchronous provider
-    //   //it able to inject dependencies
-    //   useFactory: (configService: ConfigService) => ({
-    //     type: "mysql",
-    //     host: configService.get(`${configService.get("NODE_ENV")}_HOST`) || "localhost",
-    //     port: +configService.get<number>("DB_PORT") || 3306,
-    //     username: configService.get("USERNAME") || "root",
-    //     password: configService.get("PASSWORD") || "root",
-    //     database: configService.get("DATABASE") || "root",
-    //     entities: ["dist/src/**/*.entity{.ts,.js}"],
-    //     synchronize: false, // true is Unsafe not use for product and migration
-    //     migrationsRun: true,
-    //     migrations: ["dist/src/migrations/*{.ts,.js}"],
-    //     cli: {
-    //       migrationsDir: "src/migrations",
-    //     },
-    //   }),
-    //   inject: [ConfigService],
-    // }),
     TypeOrmModule.forRoot(typeOrmConfig),
     //setup mongodb
     MongooseModule.forRootAsync({

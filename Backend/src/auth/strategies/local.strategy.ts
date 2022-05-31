@@ -1,23 +1,33 @@
-import { Injectable, UnauthorizedException } from "@nestjs/common";
+import { HttpException, HttpStatus, Injectable, UnauthorizedException } from "@nestjs/common";
 import { PassportStrategy } from "@nestjs/passport";
 import { Strategy } from "passport-local";
 import { AuthService } from "../auth.service";
+import { correctValidateReturnType } from "../type/data-return.type";
 
 //this class for config local strategies of passport
 @Injectable()
 export class LocalStrategy extends PassportStrategy(Strategy) {
   constructor(private authService: AuthService) {
     //call constructor of nearest parent class
-    super();
+    // super();
 
     //can modify specific object by using
-    //super({usernameField: 'email'});
+    super({usernameField: 'email'});
   }
 
-  async validate(username: string, password: string): Promise<any> {
-    let user = await this.authService.validate(username, password);
+  async validate(email: string, password: string): Promise<any> {
+    let user:correctValidateReturnType = await this.authService.validate(email, password);
     if (!user) {
-      throw new UnauthorizedException();
+      throw new HttpException(
+        {
+          status: HttpStatus.UNAUTHORIZED,
+          errorMessage: {
+            dev: "wrong password",
+            user: "wrong input",
+          },
+        },
+        HttpStatus.UNAUTHORIZED,
+      );
     }
     return user;
   }
