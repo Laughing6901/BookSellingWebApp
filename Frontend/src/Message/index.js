@@ -3,34 +3,22 @@ import { Button, Form, Input, Row, Col } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import BoxHeader from './BoxHeader'
-import { changeTrigger } from './siderSlice'
+import { getIdFromUrl } from './collapsedSlice'
 import './style.css'
 
-export default function Message() {
+export default function Message(props) {
     const dispatch = useDispatch();
+    const {id} = props.match.params
 
+    useEffect(() => {
+        dispatch(getIdFromUrl(id))
+    }, [id])
+    
     const renderBoxHeader = () => {
         return (
             <BoxHeader />
         )
     }
-
-    const [trigger, isTrigger] = useState(true)
-    useEffect(() => {
-        console.log({trigger})
-        dispatch(changeTrigger(trigger))
-        // const ele = document.getElementsByClassName("ant-input-affix-wrapper")[1]
-        // if(trigger){
-        //     ele.className += ' inputTrigger'
-        // }
-        // if(!trigger){
-        //     for(var i = 0; i < ele.length; i++){
-        //         ele.className += " inputUntrigger"
-        //     }
-        // }
-        
-    }, [trigger])
-    
 
     const receiveMessage = (values) => {
         console.log(values)
@@ -52,9 +40,6 @@ export default function Message() {
                                 <Input
                                     placeholder="Message"
                                     allowClear
-                                    // onClick={() => {
-                                    //     isTrigger(!trigger)
-                                    // }}
                                 />
                             </Form.Item>
                         </Col>

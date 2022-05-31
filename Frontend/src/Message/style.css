@@ -1,6 +1,6 @@
 body.light{
     --background-color: white;
-    --background: rgba(216, 203, 216, 0.247);
+    --background: rgba(233, 217, 233, 0.256);
 }
 body.dark{
     --background-color: #001529;
@@ -70,19 +70,3 @@ body.dark{
         width: 84%;
     }
 }
-
-/* @media screen and (max-width: 750px){
-    .untrigger{
-        margin-left: 38vw;
-    }
-    .triggerStyle{
-        margin-left: 0;
-    }
-    .sendMessage .inputTrigger{
-        margin-left: 0;
-        width: 130%;
-    }
-    .inputUntrigger{
-        margin-left: 50%;
-    }
-} */

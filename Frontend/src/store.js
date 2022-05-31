@@ -1,14 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 import chatRoomSlice from './ChatRoom/chatRoomSlice';
+import collapsedSlice from './Message/collapsedSlice';
 import { chatMiddleware, socketConnectMiddleware } from './middleware';
-import changeTrigger from "./Message/siderSlice"
 
 // create redux store
 // redux store save and manage all reducer
 export const store = configureStore({
   reducer: {
     chatRoom: chatRoomSlice,
-    sider: changeTrigger
+    collapsed: collapsedSlice
   },
   middleware: (getDefaultMiddleware) => {
     return getDefaultMiddleware().concat([

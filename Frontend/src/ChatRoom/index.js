@@ -1,26 +1,24 @@
-import { MenuOutlined, SearchOutlined, UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons'
+import { MenuOutlined, SearchOutlined } from '@ant-design/icons'
 import {
-  Breadcrumb,
   Col,
   Dropdown,
   Input, Layout, Menu,
   Row
 } from "antd"
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { Route, BrowserRouter } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { Route } from 'react-router-dom'
 import DarkMode from '../component/DarkMode'
 import Message from '../Message'
 import AccountList from './AccountList'
 import { startConnecting } from './chatRoomSlice'
+import Information from './Information'
 import "./style.css"
 
-const { Sider, Content, Header } = Layout
+const { Sider, Content } = Layout
 
 export default function ChatRoom(props) {
-  const { id } = props.match.params
   const url = props.location.pathname
-  const trigger = useSelector(state => state.sider.trigger)
 
   const [theme, setTheme] = useState(localStorage.getItem('themeOption'))
   const dispatch = useDispatch();
@@ -57,6 +55,12 @@ export default function ChatRoom(props) {
     )
   }
 
+  const renderInformation = () => {
+    return(
+      <Information theme={theme} />
+    )
+  }
+
   useEffect(() => {
     dispatch(startConnecting());
   }, [dispatch])
@@ -72,8 +76,6 @@ export default function ChatRoom(props) {
           theme={theme}
           breakpoint="md"
           collapsedWidth={0}
-        // collapsible 
-        // collapsed={window.innerWidth < 750 ? trigger : false}
         >
           <div style={{ marginLeft: 10, marginTop: 18, marginBottom: 18, width: 280 }} className="siderHeader">
           <Row>
@@ -99,7 +101,8 @@ export default function ChatRoom(props) {
               component={Message}
             />
             </div>
-          </Content>     
+          </Content>  
+          {renderInformation()}
         </Layout>
     </Layout>
    </div>

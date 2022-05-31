@@ -1,41 +1,34 @@
-import { PhoneFilled, UserOutlined, VideoCameraFilled } from '@ant-design/icons'
+import { InfoCircleFilled, PhoneFilled, UserOutlined, VideoCameraFilled } from '@ant-design/icons'
 import { Avatar, Col, Row } from 'antd'
-import React, { useEffect, useRef } from 'react'
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux';
+import { changeCollapsedValue } from '../collapsedSlice';
 
 export default function BoxHeader() {
-    const trigger = useSelector(state => state.sider.trigger)
-
+    const dispatch = useDispatch()
     function accessMicro() {
-        navigator.mediaDevices.getUserMedia({video: false, audio: true}).then( stream => {
+        navigator.mediaDevices.getUserMedia({ video: false, audio: true }).then(stream => {
             window.localStream = stream;
             window.localAudio.srcObject = stream;
             window.localAudio.autoplay = true;
-        }).catch( err => {
+        }).catch(err => {
             console.log("u got an error:" + err)
         });
     }
     function accessCamera() {
-        navigator.mediaDevices.getUserMedia({video: true, audio: true}).then( stream => {
+        navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then(stream => {
             window.localStream = stream;
             window.localAudio.srcObject = stream;
             window.localAudio.autoplay = true;
-        }).catch( err => {
+        }).catch(err => {
             console.log("u got an error:" + err)
         });
     }
 
-    // useEffect(() => {
-    //     const ele = document.getElementById("accountDetailId")
-    //     if(trigger){
-    //         ele.classList.add("triggerStyle")
-    //         ele.classList.remove("untrigger")
-    //     }
-    //     if(!trigger){
-    //         ele.classList.add("untrigger")
-    //         ele.classList.remove("triggerStyle")
-    //     }
-    // }, [trigger])
+    const [collapsed, setCollapsed] = useState("false")
+    useEffect(() => {
+        dispatch(changeCollapsedValue(collapsed))
+    }, [collapsed, dispatch])
 
     return (
         <div className='boxHeader'>
@@ -61,8 +54,16 @@ export default function BoxHeader() {
                         </Col>
                         <Col>
                             <VideoCameraFilled
-                                style={{ fontSize: 25, marginTop: 20 }}
+                                style={{ fontSize: 25, marginTop: 20, marginRight: 40 }}
                                 onClick={accessCamera}
+                            />
+                        </Col>
+                        <Col>
+                            <InfoCircleFilled
+                                style={{ fontSize: 25, marginTop: 20 }}
+                                onClick = {() => {
+                                    setCollapsed(!collapsed)
+                                }}
                             />
                         </Col>
                     </Row>
