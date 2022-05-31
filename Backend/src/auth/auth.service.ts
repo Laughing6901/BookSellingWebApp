@@ -20,7 +20,7 @@ export class AuthService {
       let user: userType = await this.userService.findOne(email);
 
       //check password match or not
-      let isMatchPassword:boolean = await bcrypt.compare(password, user.Password);
+      let isMatchPassword:boolean = user ? await bcrypt.compare(password, user.Password) : false;
 
       // return result validate
       if (user && isMatchPassword) {

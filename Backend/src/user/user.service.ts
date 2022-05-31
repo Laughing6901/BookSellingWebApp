@@ -26,7 +26,7 @@ export class UserService {
     try {
       //data to test function findOne
       let user:userType = await this.userRepository.findOneByEmail(email);
-      if (email === user.Email) {
+      if (user && email === user.Email) {
         return user
       }
       return null;
