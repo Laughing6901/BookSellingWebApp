@@ -32,6 +32,12 @@ export type userTypeUpdate = {
   SocketId?: string;
 }
 
+export type userTypeFind = userTypeUpdate
+
+export type emailType = {
+  Email: string
+}
+
 export enum Gender {
   MALE = 'male',
   FEMALE = 'female',

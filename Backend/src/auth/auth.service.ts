@@ -17,7 +17,7 @@ export class AuthService {
   ): Promise<correctValidateReturnType | null> {
     try {
       //get user from db
-      let user: userType = await this.userService.findOne(email);
+      let user: userType = await this.userService.findOneByEmail(email);
 
       //check password match or not
       let isMatchPassword:boolean = user ? await bcrypt.compare(password, user.Password) : false;
