@@ -1,11 +1,9 @@
-import { InfoCircleFilled, PhoneFilled, UserOutlined, VideoCameraFilled } from '@ant-design/icons'
+import { PhoneFilled, UserOutlined, VideoCameraFilled } from '@ant-design/icons'
 import { Avatar, Col, Row } from 'antd'
-import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux';
-import { changeCollapsedValue } from '../collapsedSlice';
+import React from 'react'
+import Information from './Information';
 
 export default function BoxHeader() {
-    const dispatch = useDispatch()
     function accessMicro() {
         navigator.mediaDevices.getUserMedia({ video: false, audio: true }).then(stream => {
             window.localStream = stream;
@@ -25,10 +23,11 @@ export default function BoxHeader() {
         });
     }
 
-    const [collapsed, setCollapsed] = useState("false")
-    useEffect(() => {
-        dispatch(changeCollapsedValue(collapsed))
-    }, [collapsed, dispatch])
+    const renderInformation = () => {
+        return (
+            <Information/>
+        )
+    }
 
     return (
         <div className='boxHeader'>
@@ -59,12 +58,7 @@ export default function BoxHeader() {
                             />
                         </Col>
                         <Col>
-                            <InfoCircleFilled
-                                style={{ fontSize: 25, marginTop: 20 }}
-                                onClick = {() => {
-                                    setCollapsed(!collapsed)
-                                }}
-                            />
+                            {renderInformation()}
                         </Col>
                     </Row>
                 </Col>

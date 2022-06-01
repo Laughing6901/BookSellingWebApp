@@ -1,18 +1,13 @@
 import { SendOutlined } from '@ant-design/icons'
 import { Button, Form, Input, Row, Col } from 'antd'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useDispatch } from 'react-redux'
 import BoxHeader from './BoxHeader'
-import { getIdFromUrl } from './collapsedSlice'
 import './style.css'
 
 export default function Message(props) {
     const dispatch = useDispatch();
     const {id} = props.match.params
-
-    useEffect(() => {
-        dispatch(getIdFromUrl(id))
-    }, [id])
     
     const renderBoxHeader = () => {
         return (

@@ -3,7 +3,6 @@
 }
 
 .chatRoomContent .ant-layout-sider {
-    overflow: visible !important;
     min-width: 250px !important;
     max-width: 320px !important;
     width: 255px !important;
@@ -104,7 +103,6 @@ body.dark {
 }
 
 .chatRoomContent .ant-layout-sider-collapsed{
-    overflow: visible !important;
     min-width: 0 !important;
     max-width: 0 !important;
     width: 0 !important;
@@ -112,32 +110,15 @@ body.dark {
 .chatRoomContent .ant-layout-sider-children{
     border-right: 1px solid rgba(0,0,0,.25);
 }
-.informationSider .ant-layout-sider-trigger{
-    display: none;
-}
-.informationAccount{
-    border-bottom: 1px solid rgb(233 217 233);
-    background-color: rgb(233 217 233);
-}
-.informationAccount .ant-avatar{
-    margin-left: 100px;
-    margin-top: 25px;
-}
-.informationAccount h1{
-    margin-left: 60px;
-    margin-top: 10px;
-    font-size: 25px;
-}
 
-.informationExternal .informationIcon{
-    font-size: 30px;
-    margin-left: 30px;
-    margin-top: 22px;
-    color: var(--color)
-}
-.informationExternal .informationSpan{
-    font-size: 18px;
-    margin-left: 30px;
-    margin-top: 30px;
-    color: var(--color)
+@media screen and (max-width: 768px) {
+    .chatRoomContent .ant-layout-sider-collapsed{
+        min-width: 80px !important;
+        max-width: 80px !important;
+        width: 80px !important;
+    }
+    .ant-menu.ant-menu-inline-collapsed>.ant-menu-item{
+        padding: 0 calc(28% - 8px);
+        height: 100%;
+    }
 }

@@ -12,7 +12,6 @@ import DarkMode from '../component/DarkMode'
 import Message from '../Message'
 import AccountList from './AccountList'
 import { startConnecting } from './chatRoomSlice'
-import Information from './Information'
 import "./style.css"
 
 const { Sider, Content } = Layout
@@ -52,12 +51,6 @@ export default function ChatRoom(props) {
   const renderListName = () => {
     return (
       <AccountList theme={theme} url={url} />
-    )
-  }
-
-  const renderInformation = () => {
-    return(
-      <Information theme={theme} />
     )
   }
 
@@ -102,7 +95,6 @@ export default function ChatRoom(props) {
             />
             </div>
           </Content>  
-          {renderInformation()}
         </Layout>
     </Layout>
    </div>
