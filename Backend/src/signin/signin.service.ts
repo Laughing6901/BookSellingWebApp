@@ -17,11 +17,12 @@ export class SigninService {
 
   async signin(signinData: SigninDto): Promise<any> {
     try {
+      //validate user with data in db
       let user:correctValidateReturnType = await this.authService.validate(
         signinData.email,
         signinData.password,
       );
-      console.log("user: ", user);
+      //auto assign payload because using guard to check data before signin function run
       let payload: signinUserReturnType = {
         username: user.Email,
         sub: `${user.UserId}`,
@@ -30,7 +31,7 @@ export class SigninService {
         accessToken: this.jwtService.sign(payload),
       };
     } catch (error) {
-      console.log(error);
+      console.log("signin error: ",error);
     }
   }
 }

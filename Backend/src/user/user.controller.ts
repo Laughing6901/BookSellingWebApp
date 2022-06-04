@@ -60,15 +60,15 @@ export class UserController {
     return result;
   }
 
-  @Post("email")
-  async findUserByEmail(@Body() findUserByEmail: emailType) {
-    let user: userType = await this.userService.findOneByEmail(findUserByEmail.Email);
+  @Get("email/:email")
+  async findUserByEmail(@Param() email: string) {
+    let user: userType = await this.userService.findOneByEmail(email);
     if(user === null) {
       throw new HttpException(
       {
         status: HttpStatus.NOT_FOUND,
         errorMessage: {
-          dev: `can't find user with email: ${findUserByEmail.Email}`,
+          dev: `can't find user with email: ${email}`,
           user: "not found",
         },
       },

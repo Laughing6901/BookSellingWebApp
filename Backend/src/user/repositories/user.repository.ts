@@ -6,14 +6,15 @@ import { userType, userTypeFind, userTypeUpdate } from "../type/user.type";
 //manage user entity
 @EntityRepository(User)
 export class UserRepository extends Repository<User> {
-  // async findOneByEmail(email: string): Promise<userType | null> {
-  //   let result:userType = await this.findOne({
-  //     where:{
-  //       Email: email
-  //     }
-  //   })
-  //   return result
-  // }
+  
+  async findOneByEmail(email: string): Promise<userType | null> {
+    let result:userType = await this.findOne({
+      where:{
+        Email: email
+      }
+    })
+    return result
+  }
   
   async findOneUser(userInfo: userTypeFind): Promise<userType | null> {
     let result:userType = await this.findOne(userInfo);
