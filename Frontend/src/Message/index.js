@@ -3,6 +3,7 @@ import { Button, Form, Input, Row, Col } from 'antd'
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import BoxHeader from './BoxHeader'
+import MessageList from './MessageList'
 import './style.css'
 
 export default function Message(props) {
@@ -19,10 +20,15 @@ export default function Message(props) {
         console.log(values)
     }
 
+    const renderMessageList = () => {
+        return (
+            <MessageList/>
+        )
+    }
     return (
         <div className='messageBox'>
             {renderBoxHeader()}
-            <div className='messageList'></div>
+            {renderMessageList()}
             <div className='sendMessage'>
                 <Form
                     onFinish={receiveMessage}
@@ -40,7 +46,7 @@ export default function Message(props) {
                         </Col>
                         <Col span={4}>
                             <Form.Item>
-                                <Button htmlType='submit'>
+                                <Button htmlType='submit' style={{background: 'none'}}>
                                     <SendOutlined />
                                 </Button>
                             </Form.Item>

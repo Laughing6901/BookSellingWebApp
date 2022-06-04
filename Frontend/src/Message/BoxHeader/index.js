@@ -35,7 +35,7 @@ export default function BoxHeader() {
                 <Col sm={18} xl={20}>
                     <Row className='accountDetail' >
                         <Col>
-                            <Avatar size={50} icon={<UserOutlined style={{ fontSize: 30 }} />} />
+                            <Avatar size={50} icon={<UserOutlined style={{ fontSize: 30 }} />} className="headerAvatar"/>
                         </Col>
                         <Col xl={8}>
                             <h3 style={{ marginBottom: 0, fontSize: 20 }} id="text">Sarah Phan</h3>

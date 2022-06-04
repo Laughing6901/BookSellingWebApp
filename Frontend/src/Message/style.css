@@ -1,115 +1,189 @@
-body.light{
+body.light {
     --background-color: white;
     --background: rgba(233, 217, 233, 0.256);
     --color: black;
 }
-body.dark{
+
+body.dark {
     --background-color: #001529;
     --background: rgb(233 217 233);
     --color: white;
 }
 
-.chatRoomContent .ant-layout{
+.chatRoomContent .ant-layout {
     background-color: var(--background-color);
 }
-.chatRoomContent .boxHeader{
+
+.chatRoomContent .boxHeader {
     color: var(--color);
 }
-.chatRoomContent .boxHeader h3{
+
+.chatRoomContent .boxHeader h3 {
     color: var(--color);
 }
-.dark .accountDetail p{
+
+.dark .accountDetail p {
     color: rgba(255, 255, 255, 0.499);
 }
-.messageList{
+
+.messageList {
     background-color: var(--background-color);
 }
-.sendMessage{
+
+.sendMessage {
     background-color: var(--background-color);
 }
-.messageBox .ant-avatar-circle{
+
+.messageBox .headerAvatar.ant-avatar-circle {
     margin-top: 8px;
     margin-right: 12px;
     margin-left: 45px;
 }
-.chatRoomContent .messageBox .ant-col-8{
+
+.chatRoomContent .messageBox .ant-col-8 {
     margin-top: 3px;
 }
-.messageBox .messageList{
+
+.messageBox .messageList {
     height: 90%;
     height: 80vh;
     overflow-y: scroll;
 }
-.inputMessage .ant-input-affix-wrapper{
+
+.inputMessage .ant-input-affix-wrapper {
     border-radius: 35px;
     height: 43px;
     margin-left: 23%;
     margin-bottom: 10px;
 }
-.inputMessage .ant-input-affix-wrapper>input.ant-input{
+
+.inputMessage .ant-input-affix-wrapper>input.ant-input {
     font-size: 18px;
 }
-.sendMessage .ant-row{
+
+.inputMessage .ant-form-item {
+    margin: 0;
+}
+
+.sendMessage .ant-row {
     justify-content: center
 }
-.ant-btn-default{
-    margin-left: 85%;
+
+.ant-btn-default {
+    margin-left: 80%;
     border: none;
 }
-.anticon-send{
-    font-size: 25px;
-    color: rgb(142, 11, 142);
-    margin-top: 5px;
+
+.anticon-send {
+    font-size: 30px;
+    margin-top: 2px;
 }
-.ant-drawer-content, .ant-drawer-header{
+
+body.dark .anticon-send{
+    color: rgb(232 210 232);
+}
+body.light .anticon-send{
+    color:rgb(142, 11, 142);
+}
+.ant-drawer-content,
+.ant-drawer-header {
     background-color: var(--background-color);
 }
-.ant-drawer-close, .ant-drawer-close:hover{
+
+.ant-drawer-close,
+.ant-drawer-close:hover {
     color: var(--color)
 }
-.informationSider .ant-layout-sider-trigger{
+
+.informationSider .ant-layout-sider-trigger {
     display: none;
 }
-.informationAccount{
+
+.informationAccount {
     border-bottom: 1px solid rgb(233 217 233);
     background-color: rgb(233 217 233);
 }
-.informationAccount .ant-avatar{
+
+.informationAccount .ant-avatar {
     margin-left: 146px;
     margin-top: 25px;
 }
-.informationAccount h1{
+
+.informationAccount h1 {
     margin-left: 110px;
     margin-top: 10px;
     font-size: 25px;
 }
 
-.informationExternal .informationIcon{
+.informationExternal .informationIcon {
     font-size: 30px;
     margin-left: 30px;
     margin-top: 22px;
     color: var(--color)
 }
-.informationExternal .informationSpan{
+
+.informationExternal .informationSpan {
     font-size: 18px;
     margin-left: 30px;
     margin-top: 30px;
     color: var(--color)
 }
 
-@media screen and (max-width: 1200px){
-    .ant-btn-default{
+@media screen and (max-width: 1200px) {
+    .ant-btn-default {
         margin-left: 125%;
     }
-    .inputMessage .ant-input-affix-wrapper{
+
+    .inputMessage .ant-input-affix-wrapper {
         margin-left: 33%;
         width: 100%;
     }
 }
 
-@media screen and (max-width: 992px){
-    .inputMessage .ant-input-affix-wrapper{
+@media screen and (max-width: 992px) {
+    .inputMessage .ant-input-affix-wrapper {
         margin-left: 50%;
         width: 84%;
     }
+}
+
+.messageBox .messageContainerAcc1 {
+    display: flex;
+    justify-content: flex-end
+}
+
+.messageBox .messageAcc1 {
+    border-radius: 15px 10px;
+    padding: 10px
+}
+
+body.light .messageBox .messageAcc1 {
+    background-color: #e094e0b4;
+}
+
+body.dark .messageBox .messageAcc1 {
+    background-color: #498ed8ed;
+    color: white;
+}
+
+.messageBox .messageContainerAcc2 {
+    display: flex;
+    justify-content: flex-start
+}
+
+.messageBox .messageAvatar.ant-avatar-circle {
+    margin: 0 10px;
+}
+
+.messageDetail {
+    border-radius: 15px 10px;
+    padding: 10px;
+}
+
+body.light .messageDetail {
+    background-color: rgb(165 161 161 / 43%);
+}
+
+body.dark .messageDetail {
+    background-color: #dcdcdce6;
 }
