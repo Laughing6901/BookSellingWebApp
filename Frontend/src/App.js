@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
 import ChatRoom from "./ChatRoom";
 import PageNotFound from './component/PageNotFound';
-import 'animate.css'
+// import 'animate.css'
 
 function App() {
   return (

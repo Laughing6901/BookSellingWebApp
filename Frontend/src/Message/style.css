@@ -149,12 +149,15 @@ body.light .anticon-send{
 
 .messageBox .messageContainerAcc1 {
     display: flex;
-    justify-content: flex-end
+    justify-content: flex-end;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .messageBox .messageAcc1 {
     border-radius: 15px 10px;
-    padding: 10px
+    padding: 10px;
+    max-width: 50%;
 }
 
 body.light .messageBox .messageAcc1 {
@@ -178,6 +181,11 @@ body.dark .messageBox .messageAcc1 {
 .messageDetail {
     border-radius: 15px 10px;
     padding: 10px;
+    max-width: 50%;
+}
+
+.resetFlexflowWrap {
+    flex-flow: row !important;
 }
 
 body.light .messageDetail {
