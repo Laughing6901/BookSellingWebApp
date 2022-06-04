@@ -4,7 +4,7 @@ import {
 } from "@nestjs/common";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
-import { userType } from "./type/user.type";
+import { emailType, userType, userTypeFind } from "./type/user.type";
 import { UserService } from "./user.service";
 
 @Controller("user")
@@ -40,14 +40,35 @@ export class UserController {
   }
 
   @Get(":id")
-  async findOne(@Param("id") id: string) {
+  async findOne(@Param("id") id: number) {
+    console.log(id);
     let user: userType = await this.userService.findOneById(id);
+    console.log(user);
     if(user === null) {
       throw new HttpException(
       {
         status: HttpStatus.NOT_FOUND,
         errorMessage: {
           dev: `can't find user with id: ${id}`,
+          user: "not found",
+        },
+      },
+      HttpStatus.NOT_FOUND,
+    );
+    } 
+    let {Password, ...result} = user;
+    return result;
+  }
+
+  @Get("email/:email")
+  async findUserByEmail(@Param() email: string) {
+    let user: userType = await this.userService.findOneByEmail(email);
+    if(user === null) {
+      throw new HttpException(
+      {
+        status: HttpStatus.NOT_FOUND,
+        errorMessage: {
+          dev: `can't find user with email: ${email}`,
           user: "not found",
         },
       },

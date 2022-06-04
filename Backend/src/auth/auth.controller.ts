@@ -1,8 +1,7 @@
-import { Controller, Get, HttpException, HttpStatus, Request } from "@nestjs/common";
+import { Controller, Get, Request } from "@nestjs/common";
 import { GroupChatRole } from "src/chat/type/group-chat.type";
 import { AuthService } from "./auth.service";
 import { Roles } from "./roles.decorator";
-import { correctValidateReturnType } from "./type/data-return.type";
 
 @Controller("auth")
 export class AuthController {
