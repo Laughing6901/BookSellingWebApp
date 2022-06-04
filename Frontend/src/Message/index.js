@@ -4,6 +4,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import BoxHeader from './BoxHeader'
 import MessageList from './MessageList'
+
 import './style.css'
 
 export default function Message(props) {
