@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
-import { ForgotpassService } from './forgotpass.service';
-import { ForgotpassController } from './forgotpass.controller';
+import { EmailModule } from 'src/email/email.module';
 import { UserModule } from 'src/user/user.module';
-import { EmailService } from 'src/email/email.service';
+import { ForgotpassController } from './forgotpass.controller';
+import { ForgotpassService } from './forgotpass.service';
 
 @Module({
-  imports:[UserModule, EmailService],
+  imports:[UserModule, EmailModule],
   controllers: [ForgotpassController],
   providers: [ForgotpassService]
 })
