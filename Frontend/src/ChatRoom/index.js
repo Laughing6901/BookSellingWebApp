@@ -1,4 +1,4 @@
-import { MenuOutlined, SearchOutlined, UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons'
+import { MenuOutlined, SearchOutlined } from '@ant-design/icons'
 import {
   Col,
   Dropdown,
@@ -6,7 +6,7 @@ import {
   Row
 } from "antd"
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { Route } from 'react-router-dom'
 import DarkMode from '../component/DarkMode'
 import Message from '../Message'
@@ -17,9 +17,7 @@ import "./style.css"
 const { Sider, Content } = Layout
 
 export default function ChatRoom(props) {
-  const { id } = props.match.params
   const url = props.location.pathname
-  const trigger = useSelector(state => state.sider.trigger)
 
   const [theme, setTheme] = useState(localStorage.getItem('themeOption'))
   const dispatch = useDispatch();
@@ -61,43 +59,44 @@ export default function ChatRoom(props) {
   }, [dispatch])
 
   return (
-    <div className='chatRoomContent'>
-      <Layout>
-        <Sider
+   <div className='chatRoomContent'>
+     <Layout>
+     <Sider
           style={{
+            overflow: 'auto',
             height: '100vh',
-            position: 'fixed',
-            borderRight: '1px solid #f0f0f0',
           }}
           theme={theme}
+          breakpoint="md"
           collapsedWidth={0}
-          collapsible 
-          collapsed={window.innerWidth < 750 ? trigger : false}
         >
           <div style={{ marginLeft: 10, marginTop: 18, marginBottom: 18, width: 280 }} className="siderHeader">
-            <Row>
-              <Col span={5}>
+          <Row>
+              <Col span={4}>
                 <Dropdown overlay={menu} trigger={['click']}>
-                  <MenuOutlined style={{ fontSize: 28 }} theme={theme} />
+                  <MenuOutlined style={{ fontSize: 24 }} theme={theme} />
                 </Dropdown>
               </Col>
               <Col>
-                <Input suffix={<SearchOutlined />} />
+                <Input suffix={<SearchOutlined />} style={{ width: '90%' }} />
               </Col>
             </Row>
-          </div>
-          {renderListName()}
+        </div>
+        {renderListName()}
+          
         </Sider>
-        <Layout className="site-layout">
-          <Content>
+        <Layout className='site-layout'>
+        <Content>
+            <div>
             <Route
               exact={false}
               path='/room/:id'
               component={Message}
             />
-          </Content>
+            </div>
+          </Content>  
         </Layout>
-      </Layout>
-    </div>
+    </Layout>
+   </div>
   )
 }

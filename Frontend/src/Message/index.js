@@ -1,35 +1,36 @@
 import { SendOutlined } from '@ant-design/icons'
 import { Button, Form, Input, Row, Col } from 'antd'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useDispatch } from 'react-redux'
 import BoxHeader from './BoxHeader'
-import { sendMessage } from './chatSlice'
-import { changeTrigger } from './siderSlice'
+import MessageList from './MessageList'
+
 import './style.css'
 
-export default function Message() {
+export default function Message(props) {
     const dispatch = useDispatch();
-    const [trigger, isTrigger] = useState(true)
-
+    const {id} = props.match.params
+    
     const renderBoxHeader = () => {
         return (
             <BoxHeader />
         )
     }
 
-    // useEffect(() => {
-    //     dispatch(changeTrigger(trigger))
-    // }, [trigger, dispatch])
-
     const receiveMessage = (values) => {
         console.log(values)
         dispatch(sendMessage(values));
     }
 
+    const renderMessageList = () => {
+        return (
+            <MessageList/>
+        )
+    }
     return (
         <div className='messageBox'>
             {renderBoxHeader()}
-            <div className='messageList'></div>
+            {renderMessageList()}
             <div className='sendMessage'>
                 <Form
                     onFinish={receiveMessage}
@@ -42,15 +43,12 @@ export default function Message() {
                                 <Input
                                     placeholder="Message"
                                     allowClear
-                                    onClick={() => {
-                                        isTrigger(!trigger)
-                                    }}
                                 />
                             </Form.Item>
                         </Col>
                         <Col span={4}>
                             <Form.Item>
-                                <Button htmlType='submit'>
+                                <Button htmlType='submit' style={{background: 'none'}}>
                                     <SendOutlined />
                                 </Button>
                             </Form.Item>
