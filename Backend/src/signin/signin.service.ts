@@ -1,9 +1,9 @@
 import { Injectable } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import { AuthService } from "src/auth/auth.service";
-import { SigninDto } from "./dto/create-signin.dto";
-import { UpdateSigninDto } from "./dto/update-signin.dto";
-import { signinUserReturnType, signinUserType } from "./type/signin-user.type";
+import { correctValidateReturnType } from "src/auth/type/data-return.type";
+import { SigninDto } from "./dto/signin.dto";
+import { signinUserReturnType } from "./type/signin-user.type";
 
 @Injectable()
 export class SigninService {
@@ -17,14 +17,14 @@ export class SigninService {
 
   async signin(signinData: SigninDto): Promise<any> {
     try {
-      let user = await this.authService.validate(
-        signinData.username,
+      let user:correctValidateReturnType = await this.authService.validate(
+        signinData.email,
         signinData.password,
       );
       console.log("user: ", user);
       let payload: signinUserReturnType = {
-        username: user.username,
-        sub: user.id,
+        username: user.Email,
+        sub: `${user.UserId}`,
       };
       return {
         accessToken: this.jwtService.sign(payload),
@@ -32,21 +32,5 @@ export class SigninService {
     } catch (error) {
       console.log(error);
     }
-  }
-
-  findAll() {
-    return `This action returns all signin`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} signin`;
-  }
-
-  update(id: number, updateSigninDto: UpdateSigninDto) {
-    return `This action updates a #${id} signin`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} signin`;
   }
 }

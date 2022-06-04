@@ -19,6 +19,7 @@ export default function Message(props) {
 
     const receiveMessage = (values) => {
         console.log(values)
+        dispatch(sendMessage(values));
     }
 
     const renderMessageList = () => {

@@ -10,25 +10,21 @@ export const chatMiddleware = store => {
     console.log("isConnect:", isConnectionEstablished);
     console.log(action.type);
     // handle for send messages after fist time connect to socket server
-    if(socket.connected){
-      switch (action.type) {
-        //send messages
-        case sendMessage.type:
-            socket.emit(`${ChatEvent.SendMessage}`, action.payload.content);
-          break;
-
-        //receive messages
-        case connectionEstablished.type:
-          console.log(action.type);
-          socket.on(`${ChatEvent.ReceiveMessage}`, (msg) => {
-            console.log(msg);
-          })
-          break;
-        
-        default:
-          console.log("default");
-          break;
-    }
+    switch (action.type) {
+      //send messages
+      case sendMessage.type:
+        socket.emit(`${ChatEvent.SendMessage}`, action.payload.messageInput);
+        break;
+      //receive messages
+      case connectionEstablished.type:
+        console.log(action.type);
+        socket.on(`${ChatEvent.ReceiveMessage}`, (msg) => {
+          console.log(msg);
+        })
+        break;
+      
+      default:
+        break;
   }
     //pass to the next action
     next(action);

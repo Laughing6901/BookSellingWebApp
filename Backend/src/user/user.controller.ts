@@ -1,17 +1,11 @@
 import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-  UseGuards,
+  Body, Controller, Delete, Get, HttpException,
+  HttpStatus, Param, Patch, Post
 } from "@nestjs/common";
-import { UserService } from "./user.service";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
-import { JwtGuard } from "src/auth/guard/jwt.guard";
+import { userType } from "./type/user.type";
+import { UserService } from "./user.service";
 
 @Controller("user")
 export class UserController {
@@ -22,15 +16,46 @@ export class UserController {
     return this.userService.create(createUserDto);
   }
 
-  @UseGuards(JwtGuard)
+  // @UseGuards(JwtGuard)
   @Get()
-  findAll() {
-    return "done";
+  async findAll() {
+    let listUser: userType[] = await this.userService.findAll();
+    if(!listUser) {
+      throw new HttpException(
+        {
+          status: HttpStatus.NOT_FOUND,
+          errorMessage: {
+            dev: `can't find all user data`,
+            user: "not found",
+          },
+        },
+        HttpStatus.NOT_FOUND,
+      );
+    }
+    let listUserAfter:userType[] = listUser.map(item => {
+      let {Password, ...result} = item;
+      return result
+    })
+    return listUserAfter
   }
 
   @Get(":id")
-  findOne(@Param("id") id: string) {
-    return this.userService.findOne(id);
+  async findOne(@Param("id") id: string) {
+    let user: userType = await this.userService.findOneById(id);
+    if(user === null) {
+      throw new HttpException(
+      {
+        status: HttpStatus.NOT_FOUND,
+        errorMessage: {
+          dev: `can't find user with id: ${id}`,
+          user: "not found",
+        },
+      },
+      HttpStatus.NOT_FOUND,
+    );
+    } 
+    let {Password, ...result} = user;
+    return result;
   }
 
   @Patch(":id")
