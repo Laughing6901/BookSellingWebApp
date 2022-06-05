@@ -3,6 +3,7 @@ import { Button, Form, Input, Row, Col } from 'antd'
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import BoxHeader from './BoxHeader'
+import { sendMessage } from './chatSlice'
 import MessageList from './MessageList'
 
 import './style.css'

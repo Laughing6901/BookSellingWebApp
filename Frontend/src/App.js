@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
 import ChatRoom from "./ChatRoom";
 import PageNotFound from './component/PageNotFound';
+import VideoCall from './VideoCall';
 // import 'animate.css'
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route path={"/room"} component={ChatRoom}/>
+          <Route path={"/example"} component={VideoCall}/>
           <Route path='' component={PageNotFound}/>
         </Switch>
       </BrowserRouter>
