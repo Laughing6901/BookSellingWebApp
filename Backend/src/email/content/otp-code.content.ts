@@ -13,7 +13,7 @@ export const otpCodeContent = (otp: number):mailContentType => {
   <b style="font-size:35px;">${otp}</b>
   <p style="font-size:16px;">Please do not reply to this automatically-generated email. For further information, please direct your inquiries to: <br>
   - Our Hotline 24/7 at 1900 15 68 68</p>
-  <p style="font-size:16px;"><b>Thank you for banking with Datasa!</b></p>
+  <p style="font-size:16px;"><b>Thank you for chatting with Datasa!</b></p>
   `,
   }
 }
