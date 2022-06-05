@@ -3,7 +3,7 @@ import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
 import { User } from "./entities/user.entity";
 import { UserRepository } from "./repositories/user.repository";
-import { userType } from "./type/user.type";
+import { userType, userTypeFind } from "./type/user.type";
 
 @Injectable()
 export class UserService {
@@ -22,29 +22,27 @@ export class UserService {
     return null
   }
 
-  async findOne(email: string): Promise<userType | null> {
+  async findOneByEmail(Email: string): Promise<userType | null> {
     try {
-      //data to test function findOne
-      let user:userType = await this.userRepository.findOneByEmail(email);
-      if (user && email === user.Email) {
-        return user
-      }
-      return null;
-    } catch (error) {
-      console.log(error);
+      let user:userType = await this.userRepository.findOneUser({Email});
+      return user ? user : null;
+    } 
+    catch (error) {
+      console.log("findOneByEmail Error: ",error);
+      return null
     }
   }
 
-  async findOneById(id: string): Promise<userType | null> {
+  async findOneById(UserId: number): Promise<userType | null> {
     try {
       //data to test function findOne
-      let user:userType = await this.userRepository.findOneById(id);
-      if (user) {
-        return user
-      }
-      return null;
-    } catch (error) {
+      let user:userType = await this.userRepository.findOneUser({UserId});
+      console.log(user);
+      return user ? user : null
+    } 
+    catch (error) {
       console.log("findOneById Error: ",error);
+      return null
     }
   }
 

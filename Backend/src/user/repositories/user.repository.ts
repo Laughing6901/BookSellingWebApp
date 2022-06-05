@@ -1,11 +1,12 @@
 import { EntityRepository, Repository, UpdateResult } from "typeorm";
 import { User } from "../entities/user.entity";
-import { userType, userTypeUpdate } from "../type/user.type";
+import { userType, userTypeFind, userTypeUpdate } from "../type/user.type";
 
 //repository like entity manager
 //manage user entity
 @EntityRepository(User)
 export class UserRepository extends Repository<User> {
+  
   async findOneByEmail(email: string): Promise<userType | null> {
     let result:userType = await this.findOne({
       where:{
@@ -15,12 +16,8 @@ export class UserRepository extends Repository<User> {
     return result
   }
   
-  async findOneById(id: string): Promise<userType | null> {
-    let result:userType = await this.findOne({
-      where:{
-        UserId: parseInt(id)
-      }
-    })
+  async findOneUser(userInfo: userTypeFind): Promise<userType | null> {
+    let result:userType = await this.findOne(userInfo);
     return result
   }
 

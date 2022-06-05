@@ -18,7 +18,7 @@ export default function Message(props) {
         )
     }
 
-    const receiveMessage = (values) => {
+    const sending = (values) => {
         console.log(values)
         dispatch(sendMessage(values));
     }
@@ -34,7 +34,7 @@ export default function Message(props) {
             {renderMessageList()}
             <div className='sendMessage'>
                 <Form
-                    onFinish={receiveMessage}
+                    onFinish={sending}
                 >
                     <Row className="inputMessage">
                         <Col span={14}>

@@ -12,6 +12,8 @@ import { UserModule } from "./user/user.module";
 import { MessageModule } from "./message/message.module";
 import { APP_GUARD } from "@nestjs/core";
 import { RoleGuard } from "./auth/guard/roles.guard";
+import { ForgotpassModule } from './forgotpass/forgotpass.module';
+import { EmailModule } from './email/email.module';
 import typeOrmConfig from "ormconfig";
 
 @Module({
@@ -42,6 +44,8 @@ import typeOrmConfig from "ormconfig";
     ChatModule,
     AuthModule,
     MessageModule,
+    ForgotpassModule,
+    EmailModule,
   ],
 
   //add controller

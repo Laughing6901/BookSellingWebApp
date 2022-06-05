@@ -11,7 +11,8 @@ export class SigninController {
 
   @UseGuards(LocalGuard)
   @Post()
-  signin(@Body() signinData: SigninDto) {
-    return this.signinService.signin(signinData);
+  async signin(@Body() signinData: SigninDto) {
+    //just return because using guards local to check data before signin function run
+    return await this.signinService.signin(signinData);
   }
 }

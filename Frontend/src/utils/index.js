@@ -6,6 +6,7 @@ import { setLocalStream, setRemoteStream } from "../Message/rtcSlice"
 let socket;
 let myPeer;
 let Server = "http://localhost:8600"
+
 const constraints = {
     video: true,
     audio: true
