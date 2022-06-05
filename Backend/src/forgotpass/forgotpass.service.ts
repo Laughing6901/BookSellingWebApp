@@ -14,7 +14,8 @@ export class ForgotpassService {
     try {
       let user: userType = await this.userService.findOneByEmail(createForgotpassDto.email);
       if(user) {
-        let sendMail = await this.emailService.sendOtpCode();
+        // let sendMail = await this.emailService.sendOtpCode();
+        console.log(user);
       }
       return user ? true : false
     } catch (error) {
