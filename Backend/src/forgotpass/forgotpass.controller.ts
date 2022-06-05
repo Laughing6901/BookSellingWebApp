@@ -9,8 +9,8 @@ export class ForgotpassController {
 
   @Post()
   @UseGuards(EmailGuard)
-  forgotPassword(@Body() createForgotpassDto: CreateForgotpassDto) {
-    return this.forgotpassService.forgotPassword(createForgotpassDto);
+  async forgotPassword(@Body() createForgotpassDto: CreateForgotpassDto) {
+    return await this.forgotpassService.forgotPassword(createForgotpassDto);
   }
 
 }

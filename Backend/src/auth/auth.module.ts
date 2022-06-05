@@ -7,10 +7,18 @@ import { PassportModule } from "@nestjs/passport";
 import { JwtStrategy } from "./strategies/jwt.strategy";
 import { APP_GUARD } from "@nestjs/core";
 import { RoleGuard } from "./guard/roles.guard";
+import { JwtModule } from "@nestjs/jwt";
+import { jwtConstants } from "./constant";
 
 @Module({
   //import module if use other service from other module
-  imports: [UserModule, PassportModule],
+  imports: [UserModule, PassportModule, 
+    JwtModule.register({
+      secret: jwtConstants.secret,
+      signOptions: {
+        expiresIn: 60,
+      },
+    }),],
   //add controller
   controllers: [AuthController],
   //provider service if it is a part of module or folder or function

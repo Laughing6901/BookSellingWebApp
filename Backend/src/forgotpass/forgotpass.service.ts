@@ -13,11 +13,10 @@ export class ForgotpassService {
   async forgotPassword(createForgotpassDto: CreateForgotpassDto) {
     try {
       let user: userType = await this.userService.findOneByEmail(createForgotpassDto.email);
-      if(user) {
-        // let sendMail = await this.emailService.sendOtpCode();
-        console.log(user);
+      if(!user) {
+        return false;
       }
-      return user ? true : false
+      let sendMail = await this.emailService.sendOtpCode(user.UserId, user.Email);
     } catch (error) {
       console.log(error);
       return false

@@ -1,24 +1,14 @@
 import { Module } from "@nestjs/common";
-import { SigninService } from "./signin.service";
-import { SigninController } from "./signin.controller";
-import { UserModule } from "../user/user.module";
-import { JwtModule } from "@nestjs/jwt";
 import { AuthModule } from "src/auth/auth.module";
-import { jwtConstants } from "src/auth/constant";
+import { UserModule } from "../user/user.module";
+import { SigninController } from "./signin.controller";
+import { SigninService } from "./signin.service";
 
 @Module({
   //import module if use other service from other modules
   imports: [
     UserModule,
     AuthModule,
-
-    //jwt config
-    JwtModule.register({
-      secret: jwtConstants.secret,
-      signOptions: {
-        expiresIn: 60,
-      },
-    }),
   ],
 
   //add controller
