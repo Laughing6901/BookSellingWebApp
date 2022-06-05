@@ -4,6 +4,7 @@ import './App.css';
 import ChatRoom from "./ChatRoom";
 import PageNotFound from './component/PageNotFound';
 import Login from './Login';
+import Signup from './Signup';
 import VideoCall from './VideoCall';
 // import 'animate.css'
 
@@ -13,6 +14,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route exact path={'/'} component={Login}/>
+          <Route path={'/sign-up'} component={Signup}/>
           <Route path={"/room"} component={ChatRoom}/>
           <Route path={"/example"} component={VideoCall}/>
           <Route path='' component={PageNotFound}/>
