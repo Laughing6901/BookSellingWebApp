@@ -1,11 +1,11 @@
 export class CreateUserDto {
+  FirstName: string;
+  LastName: string;
   Email: string;
   Password: string;
 }
 
 export class UserInformation extends CreateUserDto {
-  FirstName: string;
-  LastName: string;
   Avatar: string;
   Gender: string;
   DateOfBirth: Date;

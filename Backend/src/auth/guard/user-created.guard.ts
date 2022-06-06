@@ -9,7 +9,7 @@ export class UserCreatedGuard implements CanActivate {
 
   async canActivate(context: ExecutionContext): Promise<boolean>{
     const request = context.switchToHttp().getRequest();
-    const user =await this.userService.findOneUser({Email: request.body.email});
+    const user =await this.userService.findOneUser({Email: request.body.Email});
     return user ? false : true
   }
 }

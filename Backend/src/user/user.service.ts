@@ -12,8 +12,19 @@ export class UserService {
   constructor(
     private readonly userRepository: UserRepository,
   ){}
-  create(createUserDto: CreateUserDto) {
-    return "This action adds a new user";
+
+  async createUser(createUserDto: CreateUserDto) {
+    try {
+      let password = await bcrypt.hash(createUserDto.Password , 10);
+      createUserDto.Password = password;
+      let newUser = await this.userRepository.save(createUserDto);
+      return newUser
+      
+    } catch (error) {
+      console.log(error);
+      throw error
+    }
+
   }
 
   async findAll(): Promise<userType[] | null> {
@@ -67,6 +78,6 @@ export class UserService {
   }
 
   remove(id: number) {
-    return `This action removes a #${id} user`;
+    return this.userRepository.delete(id);
   }
 }

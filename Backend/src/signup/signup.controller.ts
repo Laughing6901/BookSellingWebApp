@@ -9,9 +9,10 @@ import { SignupService } from "./signup.service";
 export class SignupController {
   constructor(private readonly signupService: SignupService) {}
 
-  @Post()
   @UseGuards(UserCreatedGuard)
+  @Post()
   async create(@Body() createSignupDto: CreateSignupDto) {
-    return this.signupService.create(createSignupDto);
+    console.log(createSignupDto.Password);
+    return await this.signupService.create(createSignupDto);
   }
 }

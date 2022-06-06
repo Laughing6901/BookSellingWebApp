@@ -22,10 +22,9 @@ export class AuthService {
     try {
       //get user from db
       let user: userType = await this.userService.findOneUser({Email});
-
       //check password match or not
-      let isMatchPassword:boolean = user ? await bcrypt.compare(Password, user.Password) : false;
-
+      let isMatchPassword = await bcrypt.compare(Password, user.Password);
+      console.log(isMatchPassword);
       // return result validate
       if (user && isMatchPassword) {
         let {UserId, Email} = user;

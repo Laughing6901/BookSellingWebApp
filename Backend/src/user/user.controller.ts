@@ -2,10 +2,10 @@ import {
   Body, Controller, Delete, Get, HttpException,
   HttpStatus, Param, Patch, Post, Query, UseGuards
 } from "@nestjs/common";
-import { UserExistGuard } from "src/auth/guard/user-exist.guard";
+import { UserCreatedGuard } from "src/auth/guard/user-created.guard";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
-import { emailType, responseData, userType, userTypeFind, userTypeUpdate } from "./type/user.type";
+import { responseData, userType } from "./type/user.type";
 import { UserService } from "./user.service";
 
 @Controller("user")
@@ -13,8 +13,10 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post()
-  create(@Body() createUserDto: CreateUserDto) {
-    return this.userService.create(createUserDto);
+  @UseGuards(UserCreatedGuard)
+  async create(@Body() createUserDto: CreateUserDto) {
+    return await this.userService.createUser(createUserDto);
+
   }
 
   // @UseGuards(JwtGuard)
@@ -72,12 +74,12 @@ export class UserController {
       HttpStatus.NOT_FOUND,
     );
     } 
-    let {Password, ...result} = user;
+    let { ...result} = user;
     return result;
   }
 
   @Patch(":id")
-  @UseGuards(UserExistGuard)
+  // @UseGuards(UserExistGuard)
   async update(@Param("id") id: string, @Body() updateUserDto: UpdateUserDto) {
     let updateUser:responseData = await this.userService.update(+id, updateUserDto);
     if(!updateUser.status) {
