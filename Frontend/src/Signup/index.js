@@ -29,6 +29,30 @@ export default function Signup() {
               labelAlign='left'
             >
               <Form.Item
+                label='First Name'
+                name='firstName'
+                rules={[
+                  {
+                    required: true,
+                    message: 'Please input first name'
+                  }   
+                ]}
+              >
+                <Input/>
+              </Form.Item>
+              <Form.Item
+                label='Last Name'
+                name='lastName'
+                rules={[
+                  {
+                    required: true,
+                    message: 'Please input last name'
+                  }   
+                ]}
+              >
+                <Input/>
+              </Form.Item>
+              <Form.Item
                 label='Email'
                 name='email'
                 hasFeedback
