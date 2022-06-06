@@ -1,3 +1,3 @@
 export class CreateForgotpassDto {
-  email: string
+  Email: string
 }

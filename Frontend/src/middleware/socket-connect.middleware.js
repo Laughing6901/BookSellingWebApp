@@ -1,5 +1,6 @@
 import { io } from 'socket.io-client';
 import { connectionEstablished, startConnecting } from '../ChatRoom/chatRoomSlice';
+import { setSocketId } from '../Message/chatSlice';
 
 //host socket server
 const host = 'http://localhost:3006';
@@ -22,7 +23,8 @@ export const socketConnectMiddleware = store => {
       
       // hear the message from server when connected to server
       socket.on('connected', (socketId) => {
-        console.log(socketId);
+        console.log("socketId: ",socketId);
+        store.dispatch(setSocketId(socketId));
         //set the connection established
         store.dispatch(connectionEstablished());
         //print the my socketId 

@@ -19,7 +19,7 @@ export const chatMiddleware = store => {
       case connectionEstablished.type:
         console.log(action.type);
         socket.on(`${ChatEvent.ReceiveMessage}`, (msg) => {
-          console.log(msg);
+          store.dispatch(receiveMessage(msg));
         })
         break;
       

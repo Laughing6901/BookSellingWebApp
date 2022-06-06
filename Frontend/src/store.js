@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import chatRoomSlice from './ChatRoom/chatRoomSlice';
+import chatSlice from './Message/chatSlice';
 import { chatMiddleware, socketConnectMiddleware } from './middleware';
 
 // create redux store
@@ -7,6 +8,7 @@ import { chatMiddleware, socketConnectMiddleware } from './middleware';
 export const store = configureStore({
   reducer: {
     chatRoom: chatRoomSlice,
+    chatMessage: chatSlice,
   },
   //this will apply middleware when action go to reducer following this step 
   //action => middleware1 => middleware 2 => midd... => reducer

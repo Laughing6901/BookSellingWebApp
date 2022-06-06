@@ -1,6 +1,7 @@
 import {
-  Body, Controller, Post
+  Body, Controller, Post, UseGuards
 } from "@nestjs/common";
+import { UserCreatedGuard } from "src/auth/guard/user-created.guard";
 import { CreateSignupDto } from "./dto/signup.dto";
 import { SignupService } from "./signup.service";
 
@@ -8,8 +9,10 @@ import { SignupService } from "./signup.service";
 export class SignupController {
   constructor(private readonly signupService: SignupService) {}
 
+  @UseGuards(UserCreatedGuard)
   @Post()
-  create(@Body() createSignupDto: CreateSignupDto) {
-    return this.signupService.create(createSignupDto);
+  async create(@Body() createSignupDto: CreateSignupDto) {
+    console.log(createSignupDto.Password);
+    return await this.signupService.create(createSignupDto);
   }
 }

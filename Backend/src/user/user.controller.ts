@@ -1,10 +1,11 @@
 import {
   Body, Controller, Delete, Get, HttpException,
-  HttpStatus, Param, Patch, Post
+  HttpStatus, Param, Patch, Post, Query, UseGuards
 } from "@nestjs/common";
+import { UserCreatedGuard } from "src/auth/guard/user-created.guard";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
-import { emailType, userType, userTypeFind } from "./type/user.type";
+import { responseData, userType } from "./type/user.type";
 import { UserService } from "./user.service";
 
 @Controller("user")
@@ -12,38 +13,55 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post()
-  create(@Body() createUserDto: CreateUserDto) {
-    return this.userService.create(createUserDto);
+  @UseGuards(UserCreatedGuard)
+  async create(@Body() createUserDto: CreateUserDto) {
+    return await this.userService.createUser(createUserDto);
+
   }
 
   // @UseGuards(JwtGuard)
   @Get()
-  async findAll() {
-    let listUser: userType[] = await this.userService.findAll();
-    if(!listUser) {
-      throw new HttpException(
-        {
-          status: HttpStatus.NOT_FOUND,
-          errorMessage: {
-            dev: `can't find all user data`,
-            user: "not found",
+  async findAll(@Query() query: Object) {
+    if(Object.keys(query).length === 0) {
+      let listUser: userType[] = await this.userService.findAll();
+      if(!listUser) {
+        throw new HttpException(
+          {
+            status: HttpStatus.NOT_FOUND,
+            errorMessage: {
+              dev: `can't find all user data`,
+              user: "not found",
+            },
           },
-        },
-        HttpStatus.NOT_FOUND,
-      );
+          HttpStatus.NOT_FOUND,
+        );
+      }
+      let listUserAfter:userType[] = listUser.map(item => {
+        let {Password, ...result} = item;
+        return result
+      })
+      return listUserAfter
     }
-    let listUserAfter:userType[] = listUser.map(item => {
-      let {Password, ...result} = item;
-      return result
-    })
-    return listUserAfter
+    let user: userType = await this.userService.findOneUser(query);
+    if(user === null) {
+      throw new HttpException(
+      {
+        status: HttpStatus.NOT_FOUND,
+        errorMessage: {
+          dev: `can't find user with ${Object.keys(query)}= ${Object.values(query)}`,
+          user: "not found",
+        },
+      },
+      HttpStatus.NOT_FOUND,
+    );
+    } 
+    let {Password, ...result} = user;
+    return result;
   }
 
   @Get(":id")
   async findOne(@Param("id") id: number) {
-    console.log(id);
     let user: userType = await this.userService.findOneById(id);
-    console.log(user);
     if(user === null) {
       throw new HttpException(
       {
@@ -56,32 +74,27 @@ export class UserController {
       HttpStatus.NOT_FOUND,
     );
     } 
-    let {Password, ...result} = user;
-    return result;
-  }
-
-  @Get("email/:email")
-  async findUserByEmail(@Param() email: string) {
-    let user: userType = await this.userService.findOneByEmail(email);
-    if(user === null) {
-      throw new HttpException(
-      {
-        status: HttpStatus.NOT_FOUND,
-        errorMessage: {
-          dev: `can't find user with email: ${email}`,
-          user: "not found",
-        },
-      },
-      HttpStatus.NOT_FOUND,
-    );
-    } 
-    let {Password, ...result} = user;
+    let { ...result} = user;
     return result;
   }
 
   @Patch(":id")
-  update(@Param("id") id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.userService.update(+id, updateUserDto);
+  // @UseGuards(UserExistGuard)
+  async update(@Param("id") id: string, @Body() updateUserDto: UpdateUserDto) {
+    let updateUser:responseData = await this.userService.update(+id, updateUserDto);
+    if(!updateUser.status) {
+      throw new HttpException(
+        {
+          status: HttpStatus.NOT_ACCEPTABLE,
+          errorMessage: {
+            dev: `${updateUser.result}`,
+            user: "cannot update",
+          },
+        },
+        HttpStatus.NOT_ACCEPTABLE,
+      );
+    }
+    return updateUser.status
   }
 
   @Delete(":id")
