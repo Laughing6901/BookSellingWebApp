@@ -1,7 +1,7 @@
 .loginBackground {
     height: 720px;
-    background: rgb(191, 174, 238);
-    background: radial-gradient(circle, rgba(191, 174, 238, 1) 0%, rgba(135, 55, 194, 1) 100%);
+    background-color: #f8ceec;
+    background-image: linear-gradient(315deg, #f8ceec 0%, #a88beb 74%);
 }
 
 .loginContainer h1 {
@@ -39,6 +39,7 @@
     margin-left: 0;
     font-size: 18px;
     border-radius: 30px;
+    padding: 0;
 }
 
 .loginForm .ant-btn-default:hover {
@@ -62,14 +63,14 @@
 }
 
 .signupLink a {
-    color: #a1f17d;
+    color: rgb(142, 11, 142);
     font-weight: 700;
 }
 
 .underline {
     display: inline-block;
     padding-bottom: 2px;
-    background-image: linear-gradient(#369c27, #0000009e);
+    background-image: linear-gradient(#a88beb, #0000009e);
     background-position: 0 100%;
     background-size: 0% 2px;
     background-repeat: no-repeat;

@@ -1,11 +1,19 @@
 import React from 'react'
+import {useDispatch, useSelector} from 'react-redux'
 import './style.css'
 import { Button, Form, Input } from "antd"
 import { LockOutlined, UserOutlined } from '@ant-design/icons'
+import { login } from './loginSlice'
+import messageSlice from '../utils/messageSlice'
 
 export default function Login() {
+    const message = useSelector((state) => state.message)
+    const isLogin = useSelector((state) => state.authen)
+    console.log({message})
+    console.log({isLogin})
+    const dispatch = useDispatch()
     const onFinish = (values) => {
-        console.log({ values })
+        dispatch(login(values.email, values.password))
     }
     const onFinishFailed = (errorInfo) => {
         console.log({ errorInfo })
