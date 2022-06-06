@@ -13,7 +13,7 @@ export class ForgotpassService {
   async forgotPassword(createForgotpassDto: CreateForgotpassDto): Promise<string | boolean> {
     try {
       let Info: userTypeUpdate = {
-        Email: createForgotpassDto.email
+        Email: createForgotpassDto.Email
       }
       let user: userType = await this.userService.findOneUser(Info);
       if(!user) {

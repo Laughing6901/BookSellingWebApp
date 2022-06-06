@@ -16,15 +16,15 @@ export class AuthService {
   //validate user information that exist or not
   //validate that password right or wrong
   async validate(
-    email: string,
-    password: string,
+    Email: string,
+    Password: string,
   ): Promise<correctValidateReturnType | null> {
     try {
       //get user from db
-      let user: userType = await this.userService.findOneUser({Email: email});
+      let user: userType = await this.userService.findOneUser({Email});
 
       //check password match or not
-      let isMatchPassword:boolean = user ? await bcrypt.compare(password, user.Password) : false;
+      let isMatchPassword:boolean = user ? await bcrypt.compare(Password, user.Password) : false;
 
       // return result validate
       if (user && isMatchPassword) {

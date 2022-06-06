@@ -2,7 +2,7 @@ import {
   Body, Controller, Delete, Get, HttpException,
   HttpStatus, Param, Patch, Post, UseGuards
 } from "@nestjs/common";
-import { UserExistGuard } from "src/auth/guard/userExist.guard";
+import { UserExistGuard } from "src/auth/guard/user-exist.guard";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
 import { emailType, responseData, userType, userTypeFind, userTypeUpdate } from "./type/user.type";
