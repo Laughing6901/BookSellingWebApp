@@ -1,10 +1,11 @@
 import {
   Body, Controller, Delete, Get, HttpException,
-  HttpStatus, Param, Patch, Post
+  HttpStatus, Param, Patch, Post, UseGuards
 } from "@nestjs/common";
+import { UserExistGuard } from "src/auth/guard/userExist.guard";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
-import { emailType, userType, userTypeFind, userTypeUpdate } from "./type/user.type";
+import { emailType, responseData, userType, userTypeFind, userTypeUpdate } from "./type/user.type";
 import { UserService } from "./user.service";
 
 @Controller("user")
@@ -41,9 +42,7 @@ export class UserController {
 
   @Get(":id")
   async findOne(@Param("id") id: number) {
-    console.log(id);
     let user: userType = await this.userService.findOneById(id);
-    console.log(user);
     if(user === null) {
       throw new HttpException(
       {
@@ -105,8 +104,22 @@ export class UserController {
   }
 
   @Patch(":id")
-  update(@Param("id") id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.userService.update(+id, updateUserDto);
+  @UseGuards(UserExistGuard)
+  async update(@Param("id") id: string, @Body() updateUserDto: UpdateUserDto) {
+    let updateUser:responseData = await this.userService.update(+id, updateUserDto);
+    if(!updateUser.status) {
+      throw new HttpException(
+        {
+          status: HttpStatus.NOT_ACCEPTABLE,
+          errorMessage: {
+            dev: `${updateUser.result}`,
+            user: "cannot update",
+          },
+        },
+        HttpStatus.NOT_ACCEPTABLE,
+      );
+    }
+    return updateUser.status
   }
 
   @Delete(":id")

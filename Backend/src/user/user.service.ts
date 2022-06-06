@@ -3,7 +3,7 @@ import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
 import { User } from "./entities/user.entity";
 import { UserRepository } from "./repositories/user.repository";
-import { userType, userTypeFind, userTypeUpdate } from "./type/user.type";
+import { responseData, userType, userTypeFind, userTypeUpdate } from "./type/user.type";
 import * as bcrypt from 'bcrypt';
 import { UpdateResult } from "typeorm";
 
@@ -39,7 +39,6 @@ export class UserService {
     try {
       //data to test function findOne
       let user:userType = await this.userRepository.findOneUser({UserId});
-      console.log(user);
       return user ? user : null
     } 
     catch (error) {
@@ -48,17 +47,22 @@ export class UserService {
     }
   }
 
-  async update(id: number, updateUserDto: UpdateUserDto):Promise<UpdateResult | boolean> {
+  async update(id: number, updateUserDto: UpdateUserDto):Promise<responseData> {
     try {
       if(updateUserDto.Password !== undefined) {
         let password:string = await bcrypt.hash(updateUserDto.Password,10);
         updateUserDto.Password = password;
       }
       let updateUserResult:UpdateResult = await this.userRepository.update(id,updateUserDto);
-      return updateUserResult
+      return {
+        status: true,
+        result: updateUserResult
+      }
     } catch (error) {
-      console.log("update: ", error)
-      return false
+      return {
+        status: false,
+        result: error
+      }
     }
   }
 

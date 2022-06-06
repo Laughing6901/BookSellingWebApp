@@ -44,6 +44,7 @@ export enum Gender {
   OTHER = 'other'
 }
 
-
-
-
+export type responseData = {
+  status: boolean,
+  result: any
+}
