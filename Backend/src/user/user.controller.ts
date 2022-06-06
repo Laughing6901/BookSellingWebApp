@@ -1,6 +1,6 @@
 import {
   Body, Controller, Delete, Get, HttpException,
-  HttpStatus, Param, Patch, Post, UseGuards
+  HttpStatus, Param, Patch, Post, Query, UseGuards
 } from "@nestjs/common";
 import { UserExistGuard } from "src/auth/guard/user-exist.guard";
 import { CreateUserDto } from "./dto/create-user.dto";
@@ -19,25 +19,42 @@ export class UserController {
 
   // @UseGuards(JwtGuard)
   @Get()
-  async findAll() {
-    let listUser: userType[] = await this.userService.findAll();
-    if(!listUser) {
-      throw new HttpException(
-        {
-          status: HttpStatus.NOT_FOUND,
-          errorMessage: {
-            dev: `can't find all user data`,
-            user: "not found",
+  async findAll(@Query() query: Object) {
+    if(Object.keys(query).length === 0) {
+      let listUser: userType[] = await this.userService.findAll();
+      if(!listUser) {
+        throw new HttpException(
+          {
+            status: HttpStatus.NOT_FOUND,
+            errorMessage: {
+              dev: `can't find all user data`,
+              user: "not found",
+            },
           },
-        },
-        HttpStatus.NOT_FOUND,
-      );
+          HttpStatus.NOT_FOUND,
+        );
+      }
+      let listUserAfter:userType[] = listUser.map(item => {
+        let {Password, ...result} = item;
+        return result
+      })
+      return listUserAfter
     }
-    let listUserAfter:userType[] = listUser.map(item => {
-      let {Password, ...result} = item;
-      return result
-    })
-    return listUserAfter
+    let user: userType = await this.userService.findOneUser(query);
+    if(user === null) {
+      throw new HttpException(
+      {
+        status: HttpStatus.NOT_FOUND,
+        errorMessage: {
+          dev: `can't find user with ${Object.keys(query)}= ${Object.values(query)}`,
+          user: "not found",
+        },
+      },
+      HttpStatus.NOT_FOUND,
+    );
+    } 
+    let {Password, ...result} = user;
+    return result;
   }
 
   @Get(":id")
@@ -49,50 +66,6 @@ export class UserController {
         status: HttpStatus.NOT_FOUND,
         errorMessage: {
           dev: `can't find user with id: ${id}`,
-          user: "not found",
-        },
-      },
-      HttpStatus.NOT_FOUND,
-    );
-    } 
-    let {Password, ...result} = user;
-    return result;
-  }
-
-  @Get("email/:email")
-  async findUserByEmail(@Param() email: string) {
-    let Info: userTypeUpdate = {
-      Email: email
-    }
-    let user: userType = await this.userService.findOneUser(Info);
-    if(user === null) {
-      throw new HttpException(
-      {
-        status: HttpStatus.NOT_FOUND,
-        errorMessage: {
-          dev: `can't find user with email: ${email}`,
-          user: "not found",
-        },
-      },
-      HttpStatus.NOT_FOUND,
-    );
-    } 
-    let {Password, ...result} = user;
-    return result;
-  }
-
-  @Get("phone/:phone")
-  async findUserByPhone(@Param() phone: string) {
-    let Info: userTypeUpdate = {
-      PhoneNumber: phone
-    }
-    let user: userType = await this.userService.findOneUser(Info);
-    if(user === null) {
-      throw new HttpException(
-      {
-        status: HttpStatus.NOT_FOUND,
-        errorMessage: {
-          dev: `can't find user with phone number: ${phone}`,
           user: "not found",
         },
       },
