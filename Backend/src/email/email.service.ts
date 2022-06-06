@@ -66,6 +66,7 @@ export class EmailService {
       return false  
     } catch (error) {
       console.log("sendOtpCodeErr: ", error);
+      return false
     }
     
   }

@@ -12,7 +12,7 @@ export class EmailGuard implements CanActivate {
 
   async canActivate(context: ExecutionContext): Promise<boolean>{
     const request = context.switchToHttp().getRequest();
-    const user =await this.userService.findOneByEmail(request.body.email);
+    const user =await this.userService.findOneUser({Email: request.body.email});
     return user ? true : false
   }
 }

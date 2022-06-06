@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { EmailService } from 'src/email/email.service';
-import { userType } from 'src/user/type/user.type';
+import { userType, userTypeUpdate } from 'src/user/type/user.type';
 import { UserService } from 'src/user/user.service';
 import { CreateForgotpassDto } from './dto/forgotpass.dto';
 
@@ -12,7 +12,10 @@ export class ForgotpassService {
   ){}
   async forgotPassword(createForgotpassDto: CreateForgotpassDto): Promise<string | boolean> {
     try {
-      let user: userType = await this.userService.findOneByEmail(createForgotpassDto.email);
+      let Info: userTypeUpdate = {
+        Email: createForgotpassDto.email
+      }
+      let user: userType = await this.userService.findOneUser(Info);
       if(!user) {
         return false;
       }

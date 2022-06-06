@@ -3,7 +3,9 @@ import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
 import { User } from "./entities/user.entity";
 import { UserRepository } from "./repositories/user.repository";
-import { userType, userTypeFind } from "./type/user.type";
+import { userType, userTypeFind, userTypeUpdate } from "./type/user.type";
+import * as bcrypt from 'bcrypt';
+import { UpdateResult } from "typeorm";
 
 @Injectable()
 export class UserService {
@@ -22,9 +24,9 @@ export class UserService {
     return null
   }
 
-  async findOneByEmail(Email: string): Promise<userType | null> {
+  async findOneUser(Info: userTypeUpdate): Promise<userType | null> {
     try {
-      let user:userType = await this.userRepository.findOneUser({Email});
+      let user:userType = await this.userRepository.findOneUser(Info);
       return user ? user : null;
     } 
     catch (error) {
@@ -46,8 +48,18 @@ export class UserService {
     }
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  async update(id: number, updateUserDto: UpdateUserDto):Promise<UpdateResult | boolean> {
+    try {
+      if(updateUserDto.Password !== undefined) {
+        let password:string = await bcrypt.hash(updateUserDto.Password,10);
+        updateUserDto.Password = password;
+      }
+      let updateUserResult:UpdateResult = await this.userRepository.update(id,updateUserDto);
+      return updateUserResult
+    } catch (error) {
+      console.log("update: ", error)
+      return false
+    }
   }
 
   remove(id: number) {
