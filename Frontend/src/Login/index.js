@@ -1,23 +1,30 @@
 import React from 'react'
-import {useDispatch, useSelector} from 'react-redux'
+import {useDispatch} from 'react-redux'
 import './style.css'
 import { Button, Form, Input } from "antd"
 import { LockOutlined, UserOutlined } from '@ant-design/icons'
 import { login } from './loginSlice'
-import messageSlice from '../utils/messageSlice'
 
-export default function Login() {
-    const message = useSelector((state) => state.message)
-    const isLogin = useSelector((state) => state.authen)
-    console.log({message})
-    console.log({isLogin})
+export default function Login(props) {
+    if(JSON.parse(localStorage.getItem("user"))){
+        props.history.push("/room")
+      }
+
     const dispatch = useDispatch()
+    
     const onFinish = (values) => {
-        dispatch(login(values.email, values.password))
+        dispatch(login(values))
+        .unwrap()
+        .then(() => {
+            props.history.push("/room")
+            window.location.reload()
+        })
     }
+    
     const onFinishFailed = (errorInfo) => {
         console.log({ errorInfo })
     }
+    
     return (
         <div className='loginBackground'>
             <div className='loginContainer'>

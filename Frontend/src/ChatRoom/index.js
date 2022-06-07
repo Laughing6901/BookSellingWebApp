@@ -17,6 +17,11 @@ import "./style.css"
 const { Sider, Content } = Layout
 
 export default function ChatRoom(props) {
+  if(!(JSON.parse(localStorage.getItem("user")))){
+    props.history.push("/")
+    alert("Please login first")
+  }
+  
   const url = props.location.pathname
 
   const [theme, setTheme] = useState(localStorage.getItem('themeOption'))

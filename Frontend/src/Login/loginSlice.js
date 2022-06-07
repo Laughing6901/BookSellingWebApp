@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { authService } from '../utils/Auth'
-import { setMessage } from '../utils/messageSlice'
+import { authApi } from '../api/auth.api'
 
 const user = JSON.parse(localStorage.getItem("user"))
 const initialState = user ?
@@ -14,13 +13,14 @@ const initialState = user ?
         isLogin: false
     }
 export const login = createAsyncThunk(
-    "user/login", async ({ username, password }, thunkAPI) => {
+    "user/login", async (values, thunkAPI) => {
+        const {email, password} = values
         try {
-            const response = await authService.login(username, password);
+            const response = await authApi.login(email, password)
             return { user: response }
         } catch (error) {
-            thunkAPI.dispatch(setMessage(error))
-            return thunkAPI.rejectWithValue()
+            console.log({ error })
+            return thunkAPI.rejectWithValue(error)
         }
     }
 )
@@ -36,11 +36,9 @@ const loginSlice = createSlice({
         [login.fulfilled]: (state, action) => {
             state.isLogin = true;
             state.user = action.payload.user
-            console.log(state.isLogin)
         },
         [login.rejected]: (state, action) => {
             state.isLogin = false;
-            console.log(state.isLogin)
         }
     }
 })
