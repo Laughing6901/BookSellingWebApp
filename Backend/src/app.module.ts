@@ -2,8 +2,6 @@ import { Module } from "@nestjs/common";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { MongooseModule } from "@nestjs/mongoose";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { AppController } from "./app.controller";
-import { AppService } from "./app.service";
 import { AuthModule } from "./auth/auth.module";
 import { ChatModule } from "./chat/chat.module";
 import { SigninModule } from "./signin/signin.module";
@@ -49,13 +47,11 @@ import typeOrmConfig from "ormconfig";
   ],
 
   //add controller
-  controllers: [AppController],
+  controllers: [],
 
   //provider service if it is a part of module or folder or function
   //Module can export all provider they have
   providers: [
-    //AppService is a part of AppModule
-    AppService,
     {
       provide: APP_GUARD,
       useClass: RoleGuard,

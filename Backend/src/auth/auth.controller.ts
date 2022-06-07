@@ -8,7 +8,7 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Get()
-  @Roles(GroupChatRole.ADMIN)
+  // @Roles(GroupChatRole.ADMIN)
   async test(@Request() req ): Promise<any> {
     return "done"
     

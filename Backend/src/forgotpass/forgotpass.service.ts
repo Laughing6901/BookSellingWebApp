@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { EmailService } from 'src/email/email.service';
-import { userType } from 'src/user/type/user.type';
+import { userType, userTypeUpdate } from 'src/user/type/user.type';
 import { UserService } from 'src/user/user.service';
 import { CreateForgotpassDto } from './dto/forgotpass.dto';
 
@@ -10,14 +10,20 @@ export class ForgotpassService {
     private userService: UserService,
     private emailService: EmailService,
   ){}
-  async forgotPassword(createForgotpassDto: CreateForgotpassDto) {
+  async forgotPassword(createForgotpassDto: CreateForgotpassDto): Promise<string | boolean> {
     try {
-      let user: userType = await this.userService.findOneByEmail(createForgotpassDto.email);
-      if(user) {
-        // let sendMail = await this.emailService.sendOtpCode();
-        console.log(user);
+      let Info: userTypeUpdate = {
+        Email: createForgotpassDto.Email
       }
-      return user ? true : false
+      let user: userType = await this.userService.findOneUser(Info);
+      if(!user) {
+        return false;
+      }
+      let sendAndGetOtp:string | boolean = await this.emailService.sendOtpCode(user.UserId, user.Email);
+      if(sendAndGetOtp === false) {
+        return false
+      }
+      return sendAndGetOtp
     } catch (error) {
       console.log(error);
       return false

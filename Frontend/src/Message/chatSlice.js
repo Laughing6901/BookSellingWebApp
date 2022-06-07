@@ -16,7 +16,8 @@ const chatSlice = createSlice({
       state.socketId = ""
     }),
     receiveMessage: ((state, action) => {
-      console.log("dispatch done:" ,action.payload.messages);
+      console.log("dispatch done:" ,action.payload);
+      state.messages = action.payload
     }),
     sendMessage: ((state, action) => {
       console.log("message sent: ", action.payload.messages);

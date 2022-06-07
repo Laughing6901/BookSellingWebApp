@@ -12,11 +12,15 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
     // super();
 
     //can modify specific object by using
-    super({usernameField: 'email'});
+    super({
+      usernameField: 'Email',
+      passwordField: 'Password'
+    });
   }
 
-  async validate(email: string, password: string): Promise<any> {
-    let user:correctValidateReturnType = await this.authService.validate(email, password);
+  async validate(Email: string, Password: string): Promise<any> {
+    console.log("test:", Email, Password);
+    let user:correctValidateReturnType = await this.authService.validate(Email,Password);
     if (!user) {
       throw new HttpException(
         {

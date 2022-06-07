@@ -9,8 +9,8 @@ import { SigninService } from "./signin.service";
 export class SigninController {
   constructor(private readonly signinService: SigninService) {}
 
-  @UseGuards(LocalGuard)
   @Post()
+  @UseGuards(LocalGuard)
   async signin(@Body() signinData: SigninDto) {
     //just return because using guards local to check data before signin function run
     return await this.signinService.signin(signinData);
