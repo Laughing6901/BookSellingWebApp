@@ -5,26 +5,6 @@ import Information from './Information';
 
 export default function BoxHeader() {
 
-
-    // function accessMicro() {
-    //     navigator.mediaDevices.getUserMedia({ video: false, audio: true }).then(stream => {
-    //         window.localStream = stream;
-    //         window.localAudio.srcObject = stream;
-    //         window.localAudio.autoplay = true;
-    //     }).catch(err => {
-    //         console.log("u got an error:" + err)
-    //     });
-    // }
-    // function accessCamera() {
-    //     navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then(stream => {
-    //         window.localStream = stream;
-    //         window.localAudio.srcObject = stream;
-    //         window.localAudio.autoplay = true;
-    //     }).catch(err => {
-    //         console.log("u got an error:" + err)
-    //     });
-    // }
-
     const renderInformation = () => {
         return (
             <Information />
@@ -38,7 +18,7 @@ export default function BoxHeader() {
     return (
         <div className='boxHeader'>
             <Row>
-                <Col sm={18} xl={20}>
+                <Col sm={14} md={16} xl={20}>
                     <Row className='accountDetail' >
                         <Col>
                             <Avatar size={50} icon={<UserOutlined style={{ fontSize: 30 }} />} className="headerAvatar" />
@@ -49,7 +29,7 @@ export default function BoxHeader() {
                         </Col>
                     </Row>
                 </Col>
-                <Col sm={6} xl={4}>
+                <Col sm={10} md={8} xl={4}>
                     <Row>
                         <Col>
                             <PhoneFilled
