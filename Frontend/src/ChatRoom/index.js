@@ -1,4 +1,4 @@
-import { MenuOutlined, SearchOutlined } from '@ant-design/icons'
+import { LogoutOutlined, MenuOutlined, SearchOutlined } from '@ant-design/icons'
 import {
   Col,
   Dropdown,
@@ -12,6 +12,7 @@ import DarkMode from '../component/DarkMode'
 import Message from '../Message'
 import AccountList from './AccountList'
 import { startConnecting } from './chatRoomSlice'
+import Logout from './Logout'
 import "./style.css"
 
 const { Sider, Content } = Layout
@@ -21,7 +22,6 @@ export default function ChatRoom(props) {
     props.history.push("/")
     alert("Please login first")
   }
-  
   const url = props.location.pathname
 
   const [theme, setTheme] = useState(localStorage.getItem('themeOption'))
@@ -50,6 +50,7 @@ export default function ChatRoom(props) {
         <span>Night Mode</span>
         <DarkMode onChangeTheme={onChangeTheme} />
       </Menu.Item>
+      <Logout/>
     </Menu>
   )
 

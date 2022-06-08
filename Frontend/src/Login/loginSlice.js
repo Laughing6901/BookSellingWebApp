@@ -25,6 +25,10 @@ export const login = createAsyncThunk(
     }
 )
 
+export const logout = createAsyncThunk("user/logout", async() => {
+    await authApi.logout()
+})
+
 const loginSlice = createSlice({
     name: "authen",
     initialState,
@@ -39,6 +43,10 @@ const loginSlice = createSlice({
         },
         [login.rejected]: (state, action) => {
             state.isLogin = false;
+        },
+        [logout.fulfilled]: (state, action) => {
+            state.isLogin = false;
+            state.user = null;
         }
     }
 })

@@ -13,5 +13,8 @@ export const authApi = {
                 localStorage.setItem("user", JSON.stringify(response.accessToken))
                 return response
             })
+    },
+    logout: () => {
+        localStorage.removeItem("user")
     }
 }
