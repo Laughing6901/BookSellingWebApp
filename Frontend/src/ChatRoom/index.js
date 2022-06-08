@@ -25,6 +25,8 @@ export default function ChatRoom(props) {
   const url = props.location.pathname
 
   const [theme, setTheme] = useState(localStorage.getItem('themeOption'))
+  const [searchTerm, setSearchTerm] = useState('')
+    
   const dispatch = useDispatch();
 
   const body = document.body
@@ -56,7 +58,11 @@ export default function ChatRoom(props) {
 
   const renderListName = () => {
     return (
-      <AccountList theme={theme} url={url} />
+      <AccountList 
+      theme={theme} 
+      url={url} 
+      searchTerm = {searchTerm}
+      />
     )
   }
 
@@ -84,7 +90,13 @@ export default function ChatRoom(props) {
                 </Dropdown>
               </Col>
               <Col>
-                <Input suffix={<SearchOutlined />} style={{ width: '90%' }} />
+                <Input 
+                suffix={<SearchOutlined />} 
+                style={{ width: '90%' }} 
+                onChange={(event) => {
+                  setSearchTerm(event.target.value)
+                }}
+                />
               </Col>
             </Row>
         </div>

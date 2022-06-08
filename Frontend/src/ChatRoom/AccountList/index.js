@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom';
 
 export default function AccountList(props) {
-  const { theme, url } = props
+  const { theme, url, searchTerm } = props
   
   const checkMatch = (path) => {
     return url === path ? 'ant-menu-item-selected' : ' '
@@ -12,8 +12,14 @@ export default function AccountList(props) {
 
   const arrayTest = () => {
     const arr = ['Ngoc', 'Tam', 'Dat', 'Sinh'];
-
-    return arr.map((item, index) => {
+    return arr.filter((val) => {
+      if(searchTerm == ""){
+        return val
+      }
+      else if (val.toLowerCase().includes(searchTerm.toLowerCase())){
+        return val
+      }
+    }).map((val, index) => {
       return (
         <Menu.Item 
         key={index} 
@@ -24,7 +30,7 @@ export default function AccountList(props) {
             activeStyle={{ fontWeight: 'bold', color: 'rgb(142, 11, 142)' }}
           >
             <Avatar size={55} icon={<UserOutlined style={{ fontSize: 32 }} />} />
-            <span className='friendName'>{item}</span>
+            <span className='friendName'>{val}</span>
           </NavLink>
         </Menu.Item>
       )
