@@ -48,7 +48,9 @@ body.dark {
 .messageBox .messageList {
     height: 90%;
     height: 80vh;
-    overflow-y: scroll;
+    overflow: auto;
+    display: flex;
+    flex-direction: column-reverse;
 }
 
 .inputMessage .ant-input-affix-wrapper {
