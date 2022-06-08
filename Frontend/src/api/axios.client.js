@@ -1,18 +1,19 @@
 import axios from 'axios';
 // import { decodeToken } from '../features/auth/jwtProcess/decode-jwt';
-require('dotenv').config()
+// require('dotenv').config()
 
-const {REACT_APP_SERVER_URL} = process.env;
+// const { REACT_APP_SERVER_URL } = process.env;
+// console.log(REACT_APP_SERVER_URL)
 
 const axiosClient = axios.create({
-    baseURL: REACT_APP_SERVER_URL,
+    baseURL: 'http://localhost:8600/',
     headers: {
         'content-type': 'application/json',
     },
-    paramsSerializer: params =>  {
+    paramsSerializer: params => {
         let test = Object.values(params).join('/');
         console.log(test);
-        
+
         return test;
     },
     data: (data) => JSON.stringify(data),
@@ -35,7 +36,7 @@ axiosClient.interceptors.response.use((response) => {
     if (response && response.data) {
         return response.data;
     }
-    return response; 
+    return response;
 }, (error) => {
     // Handle errorsÍ
     console.log("axiosClienterr(): ", error.response.data);

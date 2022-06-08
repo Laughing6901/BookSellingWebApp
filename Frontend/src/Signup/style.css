@@ -1,0 +1,28 @@
+.signupLogo{
+    background-image: url('../../public/img/Logo.png');
+    width: 100%;
+    height: 500px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin-top: 20%;
+}
+.signupForm{
+    margin-right: 125px;
+    margin-left: 125px;
+}
+.signupCol{
+    margin-top: 122px;
+}
+.signupCol h1{
+    margin-left: 50%;
+}
+.signupBtn{
+    margin-left: 53%;
+    border: 1px solid rgb(142, 11, 142);
+    border-radius: 30px;
+}
+.signupForm .ant-btn:hover, .signupForm .ant-btn:focus{
+    border-color: #81a3ff;
+    color: #81a3ff
+}

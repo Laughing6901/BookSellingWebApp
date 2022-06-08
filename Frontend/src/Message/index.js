@@ -8,9 +8,11 @@ import MessageList from './MessageList'
 
 import './style.css'
 import { store } from '../store';
+import { useForm } from 'antd/lib/form/Form'
 
 export default function Message(props) {
     let messageChatInfo = useSelector(state => state.chatMessage);
+    const [form] = useForm()
     const dispatch = useDispatch();
     const {id} = props.match.params;
     
@@ -27,6 +29,7 @@ export default function Message(props) {
         }
         console.log("messageFormat:", messageSendFormat);
         dispatch(sendMessage(messageSendFormat));
+        form.resetFields()
     }
 
     const renderMessageList = () => {
@@ -43,6 +46,7 @@ export default function Message(props) {
             <div className='sendMessage'>
                 <Form
                     onFinish={receiveMessage}
+                    form={form}
                 >
                     <Row className="inputMessage">
                         <Col span={14}>
