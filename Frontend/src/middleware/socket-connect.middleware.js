@@ -23,12 +23,13 @@ export const socketConnectMiddleware = store => {
       
       // hear the message from server when connected to server
       socket.on('connected', (socketId) => {
-        console.log("socketId: ",socketId);
-        store.dispatch(setSocketId(socketId));
+        // localStorage.setItem('socketId', socketId);
         //set the connection established
         store.dispatch(connectionEstablished());
         //print the my socketId 
+        store.dispatch(setSocketId(socketId));
       })
+      
     }
 
     //pass to the next action

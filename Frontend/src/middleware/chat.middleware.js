@@ -13,12 +13,13 @@ export const chatMiddleware = store => {
     switch (action.type) {
       //send messages
       case sendMessage.type:
-        socket.emit(`${ChatEvent.SendMessage}`, action.payload.messageInput);
+        socket.emit(`${ChatEvent.SendMessage}`, action.payload);
         break;
       //receive messages
       case connectionEstablished.type:
         console.log(action.type);
         socket.on(`${ChatEvent.ReceiveMessage}`, (msg) => {
+          console.log("receive:", msg);
           store.dispatch(receiveMessage(msg));
         })
         break;

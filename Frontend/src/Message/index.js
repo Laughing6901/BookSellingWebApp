@@ -1,16 +1,18 @@
 import { SendOutlined } from '@ant-design/icons'
-import { Button, Form, Input, Row, Col } from 'antd'
-import React from 'react'
-import { useDispatch } from 'react-redux'
+import { Button, Form, Input, Row, Col, message } from 'antd'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import BoxHeader from './BoxHeader'
-import { sendMessage } from './chatSlice'
+import chatSlice, { sendMessage } from './chatSlice'
 import MessageList from './MessageList'
 
 import './style.css'
+import { store } from '../store';
 
 export default function Message(props) {
+    let messageChatInfo = useSelector(state => state.chatMessage);
     const dispatch = useDispatch();
-    const {id} = props.match.params
+    const {id} = props.match.params;
     
     const renderBoxHeader = () => {
         return (
@@ -18,9 +20,13 @@ export default function Message(props) {
         )
     }
 
-    const sending = (values) => {
-        console.log(values)
-        dispatch(sendMessage(values));
+    const receiveMessage = (values) => {
+        let messageSendFormat= {
+            socketId: messageChatInfo.socketId,
+            message: values.messageInput
+        }
+        console.log("messageFormat:", messageSendFormat);
+        dispatch(sendMessage(messageSendFormat));
     }
 
     const renderMessageList = () => {
@@ -28,13 +34,15 @@ export default function Message(props) {
             <MessageList/>
         )
     }
+    
     return (
         <div className='messageBox'>
             {renderBoxHeader()}
             {renderMessageList()}
+
             <div className='sendMessage'>
                 <Form
-                    onFinish={sending}
+                    onFinish={receiveMessage}
                 >
                     <Row className="inputMessage">
                         <Col span={14}>
