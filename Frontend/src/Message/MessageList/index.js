@@ -20,12 +20,12 @@ export default function MessageList() {
                 return(
                     <div key={index} className='messageContainerAcc2 animate__animated animate__slideInUp animate_fast'>
                         <div className='messageAcc2'>
-                            <Row wrap= {false}>
+                            <Row wrap= {false} >
                                 <Col>
                                     <Avatar size={40} icon={<UserOutlined style={{ fontSize: 20 }} />} className='messageAvatar'/>
                                 </Col>
                                 <Col className='messageDetail'>
-                                    <div className=''>{item.message}</div>
+                                    {item.message}
                                 </Col>
                             </Row>
                         </div>
