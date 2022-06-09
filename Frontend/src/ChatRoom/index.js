@@ -25,6 +25,9 @@ export default function ChatRoom(props) {
   const url = props.location.pathname
 
   const [theme, setTheme] = useState(localStorage.getItem('themeOption'))
+  const [searchTerm, setSearchTerm] = useState('')
+  const [phoneNumber, setPhoneNumber] = useState('')
+    
   const dispatch = useDispatch();
 
   const body = document.body
@@ -44,6 +47,10 @@ export default function ChatRoom(props) {
     setTheme(formState)
   }
 
+  const getPhoneNumber = (values) => {
+    setPhoneNumber(values)
+  }
+
   const menu = (
     <Menu>
       <Menu.Item>
@@ -56,9 +63,16 @@ export default function ChatRoom(props) {
 
   const renderListName = () => {
     return (
-      <AccountList theme={theme} url={url} />
+      <AccountList 
+      theme={theme} 
+      url={url} 
+      searchTerm = {searchTerm}
+      phoneNumber = {phoneNumber}
+      />
     )
   }
+
+  
 
   useEffect(() => {
     dispatch(startConnecting());
@@ -84,7 +98,16 @@ export default function ChatRoom(props) {
                 </Dropdown>
               </Col>
               <Col>
-                <Input suffix={<SearchOutlined />} style={{ width: '90%' }} />
+                <Input 
+                suffix={<SearchOutlined />} 
+                style={{ width: '90%' }} 
+                onChange={(event) => {
+                  setSearchTerm(event.target.value)
+                }}
+                onPressEnter={(event) => {
+                  getPhoneNumber(event.target.value)
+                }} 
+                />
               </Col>
             </Row>
         </div>

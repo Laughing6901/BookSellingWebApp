@@ -39,6 +39,7 @@ body.dark {
     margin-top: 8px;
     margin-right: 12px;
     margin-left: 45px;
+    margin-bottom: 10px;
 }
 
 .chatRoomContent .messageBox .ant-col-8 {
@@ -56,8 +57,9 @@ body.dark {
 .inputMessage .ant-input-affix-wrapper {
     border-radius: 35px;
     height: 43px;
-    margin-left: 23%;
+    margin-left: 0%;
     margin-bottom: 10px;
+    width: 122%;
 }
 
 .inputMessage .ant-input-affix-wrapper>input.ant-input {
@@ -134,19 +136,14 @@ body.light .anticon-send{
 
 @media screen and (max-width: 1200px) {
     .ant-btn-default {
-        margin-left: 125%;
-    }
-
-    .inputMessage .ant-input-affix-wrapper {
-        margin-left: 33%;
-        width: 100%;
+        margin-left: 82%;
     }
 }
 
 @media screen and (max-width: 992px) {
     .inputMessage .ant-input-affix-wrapper {
-        margin-left: 50%;
-        width: 84%;
+        margin-left: 5%;
+        width: 115%;
     }
 }
 

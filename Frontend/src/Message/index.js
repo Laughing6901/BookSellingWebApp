@@ -18,7 +18,7 @@ export default function Message(props) {
     
     const renderBoxHeader = () => {
         return (
-            <BoxHeader />
+            <BoxHeader idAccount = {id}/>
         )
     }
 
