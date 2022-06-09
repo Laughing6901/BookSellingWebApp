@@ -12,19 +12,19 @@ export default function AccountList(props) {
 
   const arr = [
     {
-      id: 1,
+      id: 0,
       email: "test@gmail.com",
       phoneNumber: "01973640937",
       fullName: "testing"
     },
     {
-      id: 2,
+      id: 1,
       email: "test2@gmail.com",
       phoneNumber: "0847389374",
       fullName: "testing2"
     },
     {
-      id: 3,
+      id: 2,
       email: "test3@gmail.com",
       phoneNumber: "87983459834",
       fullName: "testing3"
