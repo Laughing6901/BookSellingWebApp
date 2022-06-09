@@ -26,6 +26,7 @@ export default function ChatRoom(props) {
 
   const [theme, setTheme] = useState(localStorage.getItem('themeOption'))
   const [searchTerm, setSearchTerm] = useState('')
+  const [phoneNumber, setPhoneNumber] = useState('')
     
   const dispatch = useDispatch();
 
@@ -46,6 +47,10 @@ export default function ChatRoom(props) {
     setTheme(formState)
   }
 
+  const getPhoneNumber = (values) => {
+    setPhoneNumber(values)
+  }
+
   const menu = (
     <Menu>
       <Menu.Item>
@@ -62,9 +67,12 @@ export default function ChatRoom(props) {
       theme={theme} 
       url={url} 
       searchTerm = {searchTerm}
+      phoneNumber = {phoneNumber}
       />
     )
   }
+
+  
 
   useEffect(() => {
     dispatch(startConnecting());
@@ -96,6 +104,9 @@ export default function ChatRoom(props) {
                 onChange={(event) => {
                   setSearchTerm(event.target.value)
                 }}
+                onPressEnter={(event) => {
+                  getPhoneNumber(event.target.value)
+                }} 
                 />
               </Col>
             </Row>

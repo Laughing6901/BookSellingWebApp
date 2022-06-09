@@ -4,22 +4,45 @@ import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom';
 
 export default function AccountList(props) {
-  const { theme, url, searchTerm } = props
-  
+  const { theme, url, searchTerm, phoneNumber } = props
+
   const checkMatch = (path) => {
     return url === path ? 'ant-menu-item-selected' : ' '
   }
 
+  const arr = [
+    {
+      id: 1,
+      email: "test@gmail.com",
+      phoneNumber: "01973640937",
+      fullName: "testing"
+    },
+    {
+      id: 2,
+      email: "test2@gmail.com",
+      phoneNumber: "0847389374",
+      fullName: "testing2"
+    },
+    {
+      id: 3,
+      email: "test3@gmail.com",
+      phoneNumber: "87983459834",
+      fullName: "testing3"
+    }
+  ]
+
   const arrayTest = () => {
-    const arr = ['Ngoc', 'Tam', 'Dat', 'Sinh'];
     return arr.filter((val) => {
       if(searchTerm == ""){
         return val
       }
-      else if (val.toLowerCase().includes(searchTerm.toLowerCase())){
+      else if (val.fullName.toLowerCase().includes(searchTerm.toLowerCase())){
         return val
       }
-    }).map((val, index) => {
+      else if (val.phoneNumber.includes(phoneNumber)){
+        return val
+      }
+    }).map((item, index) => {
       return (
         <Menu.Item 
         key={index} 
@@ -30,7 +53,7 @@ export default function AccountList(props) {
             activeStyle={{ fontWeight: 'bold', color: 'rgb(142, 11, 142)' }}
           >
             <Avatar size={55} icon={<UserOutlined style={{ fontSize: 32 }} />} />
-            <span className='friendName'>{val}</span>
+            <span className='friendName'>{item.fullName}</span>
           </NavLink>
         </Menu.Item>
       )
