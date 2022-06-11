@@ -72,8 +72,6 @@ export default function ChatRoom(props) {
     )
   }
 
-  
-
   useEffect(() => {
     dispatch(startConnecting());
   }, [dispatch])
@@ -111,7 +109,7 @@ export default function ChatRoom(props) {
               </Col>
             </Row>
         </div>
-        {renderListName()}
+        {/* {renderListName()} */}
           
         </Sider>
         <Layout className='site-layout'>

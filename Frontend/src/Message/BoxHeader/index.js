@@ -11,7 +11,7 @@ export default function BoxHeader(props) {
             id: 0,
             email: "test@gmail.com",
             phoneNumber: "01973640937",
-            fullName: "testing"
+            fullName: "IU Secret Chat"
         },
         {
             id: 1,

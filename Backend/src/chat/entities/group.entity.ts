@@ -1,10 +1,10 @@
-import { Column, Entity, OneToMany, PrimaryColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 import { GroupMember } from "./member-group.entity";
 
 @Entity("GroupChat")
 export class GroupChat {
   //Table column config
-  @PrimaryColumn({
+  @PrimaryGeneratedColumn({
     name: "GroupId",
     type: "int",
   })
@@ -19,6 +19,7 @@ export class GroupChat {
   @Column({
     name: "Avatar",
     type: "blob",
+    nullable: true,
   })
   Avatar: string;
 

@@ -6,6 +6,8 @@ import {
   Patch,
   Param,
   Delete,
+  HttpException,
+  HttpStatus,
 } from "@nestjs/common";
 import { ChatService } from "./chat.service";
 import { CreateChatDto } from "./dto/create-chat.dto";
@@ -21,8 +23,20 @@ export class ChatController {
   }
 
   @Get()
-  findAll() {
-    return this.chatService.findAll();
+  async findAll() {
+    let listUser= await this.chatService.findAll();
+      if(!listUser) {
+        throw new HttpException(
+          {
+            status: HttpStatus.NOT_FOUND,
+            errorMessage: {
+              dev: `can't find all group chat data`,
+              user: "not found",
+            },
+          },
+          HttpStatus.NOT_FOUND,
+        );
+      }
   }
 
   @Get(":id")
