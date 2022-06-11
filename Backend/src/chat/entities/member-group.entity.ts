@@ -15,14 +15,23 @@ export class GroupMember {
   @Column({
     name: "JoinDate",
     type: "datetime",
+    nullable: true
   })
   JoinDate;
 
   @Column({
     name: "LeftDate",
     type: "datetime",
+    nullable: true
   })
   LeftDate;
+
+  @Column({
+    name:"Name",
+    type:"varchar",
+    nullable: true
+  })
+  Name: string
 
   @Column({
     name: "Role",
