@@ -1,10 +1,19 @@
 import React from 'react'
 import './style.css'
 import { Button, Col, Form, Input, Row } from 'antd'
+import {useDispatch} from 'react-redux'
+import {register} from './signupSlice'
 
-export default function Signup() {
+export default function Signup(props) {
+  const dispatch = useDispatch()
   const onFinish = (values) => {
-    console.log(values)
+    dispatch(register(values))
+    .unwrap()
+    .then(() => {
+      alert("Register successfully")
+      props.history.push('/')
+      window.location.reload()
+    })
   }
   const onFinishFailed = (errorInfo) => {
     console.log({ errorInfo })
@@ -30,7 +39,7 @@ export default function Signup() {
             >
               <Form.Item
                 label='First Name'
-                name='firstName'
+                name='FirstName'
                 rules={[
                   {
                     required: true,
@@ -42,7 +51,7 @@ export default function Signup() {
               </Form.Item>
               <Form.Item
                 label='Last Name'
-                name='lastName'
+                name='LastName'
                 rules={[
                   {
                     required: true,
@@ -54,7 +63,7 @@ export default function Signup() {
               </Form.Item>
               <Form.Item
                 label='Email'
-                name='email'
+                name='Email'
                 hasFeedback
                 rules={
                   [
@@ -73,7 +82,7 @@ export default function Signup() {
               </Form.Item>
               <Form.Item
                 label='Password'
-                name='password'
+                name='Password'
                 hasFeedback
                 rules={
                   [
@@ -93,7 +102,7 @@ export default function Signup() {
               <Form.Item
                 name='confirm'
                 label='Confirm Password'
-                dependencies={['password']}
+                dependencies={['Password']}
                 hasFeedback
                 rules={
                   [
@@ -103,7 +112,7 @@ export default function Signup() {
                     },
                     ({ getFieldValue }) => ({
                       validator(_, value) {
-                        if (!value || getFieldValue('password') === value) {
+                        if (!value || getFieldValue('Password') === value) {
                           return Promise.resolve();
                         }
 

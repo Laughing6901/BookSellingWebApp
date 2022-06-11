@@ -27,17 +27,6 @@ export default function BoxHeader(props) {
         }
     ]
 
-    const arrRoom = [
-        {
-            roomId: 1,
-            accountId: 1,
-        },
-        {
-            roomId: 1,
-            accountId: 2,
-        }
-    ]
-
     const boxHeaderDetail = () => {
         return arr.map((item) => {
             console.log(typeof(item.id))
@@ -48,13 +37,6 @@ export default function BoxHeader(props) {
             }
         })
     }
-
-    // const addFriendButton = () => {
-    //     const element = 
-    //     if (roomId === 1){
-
-    //     }
-    // }
 
     const renderInformation = () => {
         return (
