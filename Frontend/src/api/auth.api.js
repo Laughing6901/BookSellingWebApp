@@ -2,8 +2,6 @@ import axiosClient from "./axios.client"
 
 export const authApi = {
     login: (Email, Password) => {
-        // console.log({Email})
-        // console.log({Password})
         return axiosClient
             .post("signin", {
                 Email,
@@ -16,5 +14,17 @@ export const authApi = {
     },
     logout: () => {
         localStorage.removeItem("user")
+    },
+    register: (FirstName, LastName, Email, Password) => {
+        return axiosClient
+        .post('signup', {
+            FirstName,
+            LastName,
+            Email,
+            Password
+        })
+        .then((response) => {
+            return response
+        })
     }
 }
